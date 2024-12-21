@@ -6,7 +6,7 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2024/12/05 06:14:54 by alamini          ###   ########.fr       */
+/*   Updated: 2024/12/21 15:58:16 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
+
+typedef struct s_cordinates
+{
+    int x;
+    int y;
+} t_cordinates;
 
 typedef struct s_elements
 {
@@ -30,15 +36,26 @@ typedef struct s_elements
     int total;
 }t_elements;
 
+typedef struct s_map
+{
+    char **the_map;
+    int max_column;
+    int max_row;
+    int start;
+    t_cordinates player;
+    int     direction;
+}t_map
+;
 typedef struct s_game
 {
-    char **map;
+    t_map  map;
     char *north;
     char *south;
     char *west;
     char *east;
-    char *floor;
-    char *ceiling;
+    int floor;
+    int ceiling;
+    char *file;
 } t_game;
 
 
@@ -50,4 +67,7 @@ int     ft_error(char *errmsg);
 int	    ex_strcmp(char *s1, char *s2);
 size_t	ex_strlen(const char *s);
 char	*ex_strdup(const char *s1);
+int     ft_isdigit(int c);
+int     is_number(char *number);
+int	    ft_atoi(const char *str);
 #endif

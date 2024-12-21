@@ -6,7 +6,7 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 20:50:24 by alamini           #+#    #+#             */
-/*   Updated: 2024/12/05 05:20:07 by alamini          ###   ########.fr       */
+/*   Updated: 2024/12/16 23:00:14 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,23 @@ char	*ex_strdup(const char *s1)
 	}
 	ptr[i] = '\0';
 	return (ptr);
+}
+int ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+int is_number(char *number)
+{
+	int i;
+
+	i = 0;
+	while (number[i])
+	{
+		if (!ft_isdigit(number[i]))
+			return (1);
+		i++;
+	}
+	return (0);
 }

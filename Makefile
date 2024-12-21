@@ -1,6 +1,6 @@
 SRC_FILES = 	src/main.c \
 				get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
-				utils/utils.c utils/ft_split.c
+				utils/utils.c utils/ft_split.c utils/utils2.c 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
 HEADER_FILES = Includes/cube.h Includes/get_next_line.h
