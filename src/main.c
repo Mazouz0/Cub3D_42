@@ -6,7 +6,7 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:16:39 by alamini           #+#    #+#             */
-/*   Updated: 2024/12/21 17:54:57 by alamini          ###   ########.fr       */
+/*   Updated: 2024/12/21 18:29:40 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,9 @@ void	init_data(t_elements *elements, t_game *game, char *file)
 	game->floor = -1;
 	game->ceiling = -1;
 	game->file = file;
+	game->width = 1920;
+	game->height = 1080;
+	game->map.start = 0;
 }
 
 int	check_elements_count(t_elements elements)
@@ -490,17 +493,26 @@ int	main(int argc, char **argv)
 	if (map_parse(fd, &game))
 		return (ft_error("Invalid map content!!"), 1);
 	
-	// printf("%d\n", game.map.max_column);
-	// printf("%d\n", game.map.max_row);
-	// printf("Start :%d", game.map.start);
 	if (get_map(fd, &game))
 		return (1);
 	if (map_borders(game.map) || validate_map(game.map))
 		return (1);
-	view_map(&game);
+	
 	get_player_info(&game.map);
+	init_game(&game);
+
+
+
+
+
+
+
 
 	
+	// view_map(&game);
+	// printf("%d\n", game.map.max_column);
+	// printf("%d\n", game.map.max_row);
+	// printf("Start :%d", game.map.start);
 	// printf("x = %d\n", game.map.player.x);
 	// printf("y = %d\n", game.map.player.y);
 	// printf("direction = %c\n", game.map.direction);

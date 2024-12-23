@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "sstream": "c",
-        "cube.h": "c"
+        "cube.h": "c",
+        "mlx.h": "c"
     }
 }

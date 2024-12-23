@@ -6,7 +6,7 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2024/12/21 15:58:16 by alamini          ###   ########.fr       */
+/*   Updated: 2024/12/21 19:41:58 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUBE_H
 
 #include "get_next_line.h"
+# include "mlx.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
@@ -56,7 +57,17 @@ typedef struct s_game
     int floor;
     int ceiling;
     char *file;
+    int width;
+    int height;
 } t_game;
+
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
 
 
 // utils
@@ -70,4 +81,8 @@ char	*ex_strdup(const char *s1);
 int     ft_isdigit(int c);
 int     is_number(char *number);
 int	    ft_atoi(const char *str);
+
+// game
+
+void    init_game(t_game *game);
 #endif
