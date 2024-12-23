@@ -5,23 +5,29 @@ SRC_FILES = 	src/parsing.c \
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
 HEADER_FILES = Includes/cube.h Includes/get_next_line.h
+
 NAME = cub3D
+
 CFLAGS = -Wall -Wextra -Werror
+
+MLX = -I  Includes/libglfw3.a -I  Includes/libmlx42.a  -framework OpenGL -framework IOKit
+
 RM = rm -f
 
 all:	$(NAME)
 
-$(NAME):$(OBJ_FILES)
-		cc  $(CFLAGS) $(OBJ_FILES) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+$(NAME)			:	$(OBJ_FILES)
+					cc $(CFLAGS) $(OBJ_FILES) $(MLX) -o $(NAME)
 
 %.o : %.c  $(HEADER_FILES)
-				cc -c $(CFLAGS) $< -o $@
+				cc $(CFLAGS) -c $< -o $@
 
 clean:
 				$(RM) $(OBJ_FILES)
-
 
 fclean:			clean
 				$(RM) $(NAME)
 
 re:				fclean $(NAME)
+
+.PHONY:			all clean fclean r

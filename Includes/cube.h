@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2024/12/23 20:31:06 by mohmazou         ###   ########.fr       */
+/*   Updated: 2024/12/23 21:03:51 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUBE_H
 
 #include "get_next_line.h"
-# include "mlx.h"
+# include "../MLX/.MLX42.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
