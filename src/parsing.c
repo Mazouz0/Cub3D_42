@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:16:39 by alamini           #+#    #+#             */
-/*   Updated: 2024/12/21 18:29:40 by alamini          ###   ########.fr       */
+/*   Updated: 2024/12/23 20:31:32 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int is_a_direction(char *str, t_elements *elements)
 	return (1);
 }
 
-void set_texture(char *identifier, char *path, t_game *game)
+void set_texture(char *identifier, char *path, t_gdata *game)
 {
 	if (!ex_strcmp(identifier, "NO"))
 		game->north = path;
@@ -60,7 +60,7 @@ int get_rgba(int r, int g, int b, int a)
     return (r << 24 | g << 16 | b << 8 | a);
 }
 
-void set_color(char *identifier, int arr[3], t_game *game)
+void set_color(char *identifier, int arr[3], t_gdata *game)
 {
 	if (!ex_strcmp(identifier, "F"))
 		game->floor = get_rgba(arr[0], arr[1], arr[2], 0xAA);
@@ -68,7 +68,7 @@ void set_color(char *identifier, int arr[3], t_game *game)
 		game->ceiling = get_rgba(arr[0], arr[1], arr[2], 0xAA);
 }
 
-int	check_texture(char *identifier, char *line, t_game *game)
+int	check_texture(char *identifier, char *line, t_gdata *game)
 {
 	int i;
 	char *tmp;
@@ -112,7 +112,7 @@ int is_color(char **dbl_ptr, t_elements *elements)
 
 
 
-int check_color(char *identifier, char *str, t_game *game)
+int check_color(char *identifier, char *str, t_gdata *game)
 {
 	char **dbl_ptr;
 	int	i;
@@ -141,7 +141,7 @@ int check_color(char *identifier, char *str, t_game *game)
 	return (free(color), set_color(identifier, rgb, game), 0);
 }
 
-int	check_map_content(char *line, t_elements *elements, t_game *game)
+int	check_map_content(char *line, t_elements *elements, t_gdata *game)
 {
 	int ce;
 	char **dbl_ptr;
@@ -161,8 +161,15 @@ int	check_map_content(char *line, t_elements *elements, t_game *game)
 	return (1);
 }
 
-void	init_data(t_elements *elements, t_game *game, char *file)
+t_gdata	*init_data(t_elements *elements, char *file)
 {
+	t_gdata *game;
+	game = malloc(sizeof(t_gdata));
+	if (!game)
+	{
+		ft_error("Allocation Error!!");
+		exit(1);
+	}
 	elements->map = 0;
 	elements->no = 0;
 	elements->so = 0;
@@ -180,9 +187,8 @@ void	init_data(t_elements *elements, t_game *game, char *file)
 	game->floor = -1;
 	game->ceiling = -1;
 	game->file = file;
-	game->width = 1920;
-	game->height = 1080;
 	game->map.start = 0;
+	return (game);
 }
 
 int	check_elements_count(t_elements elements)
@@ -259,7 +265,7 @@ int row_length(char *line)
 	return (i);
 }
 
-void fill_map_info(char *line, t_game *game)
+void fill_map_info(char *line, t_gdata *game)
 {
 	int length;
 
@@ -269,7 +275,7 @@ void fill_map_info(char *line, t_game *game)
 	game->map.max_row++;
 }
 
-int map_parse(int fd, t_game *game)
+int map_parse(int fd, t_gdata *game)
 {
 	char *line;
 	int count;
@@ -297,7 +303,7 @@ int map_parse(int fd, t_game *game)
 	return (0);
 }
 
-char *get_row(char *line, t_game *game)
+char *get_row(char *line, t_gdata *game)
 {
 	char *row;
 	int		i;
@@ -320,7 +326,7 @@ char *get_row(char *line, t_game *game)
 	return (row);
 }
 
-int get_map(int fd, t_game *game)
+int get_map(int fd, t_gdata *game)
 {
 	int	i;
 	char *line;
@@ -349,7 +355,7 @@ int get_map(int fd, t_game *game)
 }
 
 
-void view_map(t_game *game)
+void view_map(t_gdata *game)
 {
 	int i = 0;
 	int j = 0;
@@ -464,43 +470,43 @@ void	get_player_info(t_map *map)
 	}
 }
 
-int	main(int argc, char **argv)
+t_gdata	*parsing(int argc, char **argv)
 {
 	char	*line;
 	t_elements	elem_parse;
-	t_game		game;
+	t_gdata		*game;
 	int		fd;
+
+	game = NULL;
 	if (argc != 2)
-		return (ft_error("Invalid arguments!!"));
+		return (ft_error("Invalid arguments!!"), NULL);
 	if (check_file_name(argv[1]))
-		return (1);
-	init_data(&elem_parse, &game, argv[1]);
-	fd = open(game.file, O_RDONLY);
+		return (NULL);
+	game = init_data(&elem_parse, argv[1]);
+	fd = open(game->file, O_RDONLY);
 	if (fd == -1)
-		return (ft_error("Invalid map file!!"));
-	
+		return (ft_error("Invalid map file!!"), NULL);
 	while ((line = get_next_line(fd)))
 	{
-		game.map.start++;
-		if (check_map_content(line, &elem_parse, &game))
-			return (free(line), ft_error("Invalid map content!!"));
+		game->map.start++;
+		if (check_map_content(line, &elem_parse, game))
+			return (free(line), ft_error("Invalid map content!!"), NULL);
 		free(line);
 		if (check_elements_count(elem_parse) == 1)
-			return (ft_error("Invalid map content!!"));
+			return (ft_error("Invalid map content!!"), NULL);
 		else if (check_elements_count(elem_parse) == 2)
 			break ;
 	}
-	if (map_parse(fd, &game))
-		return (ft_error("Invalid map content!!"), 1);
+	if (map_parse(fd, game))
+		return (ft_error("Invalid map content!!"), NULL);
 	
-	if (get_map(fd, &game))
-		return (1);
-	if (map_borders(game.map) || validate_map(game.map))
-		return (1);
+	if (get_map(fd, game))
+		return (NULL);
+	if (map_borders(game->map) || validate_map(game->map))
+		return (NULL);
 	
-	get_player_info(&game.map);
-	init_game(&game);
-
+	get_player_info(&game->map);
+	return (game);
 
 
 
@@ -509,20 +515,30 @@ int	main(int argc, char **argv)
 
 
 	
-	// view_map(&game);
-	// printf("%d\n", game.map.max_column);
-	// printf("%d\n", game.map.max_row);
-	// printf("Start :%d", game.map.start);
-	// printf("x = %d\n", game.map.player.x);
-	// printf("y = %d\n", game.map.player.y);
-	// printf("direction = %c\n", game.map.direction);
+	// printf("%d\n", game->map.max_column);
+	// printf("%d\n", game->map.max_row);
+	// printf("Start :%d", game->map.start);
+	// printf("x = %d\n", game->map.player.x);
+	// printf("y = %d\n", game->map.player.y);
+	// printf("direction = %c\n", game->map.direction);
 	
-	// printf("North :|%s|\n", game.north);
-	// printf("South :|%s|\n", game.south);
-	// printf("West :|%s|\n", game.west);
-	// printf("East :|%s|\n", game.east);
-	// printf("Floor :%d\n", game.floor);
-	// printf("Ceiling :%d\n", game.ceiling);
+	// printf("North :|%s|\n", game->north);
+	// printf("South :|%s|\n", game->south);
+	// printf("West :|%s|\n", game->west);
+	// printf("East :|%s|\n", game->east);
+	// printf("Floor :%d\n", game->floor);
+	// printf("Ceiling :%d\n", game->ceiling);
 	
 	
+}
+int main(int argc, char **argv)
+{
+	t_gdata *game;
+	game = parsing(argc, argv);
+	if (game)
+		view_map(game);
+	printf("x = %d\n", game->map.player.x);
+	printf("y = %d\n", game->map.player.y);
+	printf("direction = %c\n", game->map.direction);
+	return (0);
 }

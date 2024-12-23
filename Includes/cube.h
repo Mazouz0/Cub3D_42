@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2024/12/21 19:41:58 by alamini          ###   ########.fr       */
+/*   Updated: 2024/12/23 20:31:06 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_map
     int     direction;
 }t_map
 ;
-typedef struct s_game
+typedef struct s_gdata
 {
     t_map  map;
     char *north;
@@ -57,17 +57,12 @@ typedef struct s_game
     int floor;
     int ceiling;
     char *file;
-    int width;
-    int height;
-} t_game;
+} t_gdata;
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
+
+
+// 
+
 
 
 // utils
@@ -84,5 +79,4 @@ int	    ft_atoi(const char *str);
 
 // game
 
-void    init_game(t_game *game);
 #endif

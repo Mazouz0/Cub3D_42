@@ -1,7 +1,7 @@
-SRC_FILES = 	src/main.c \
+SRC_FILES = 	src/parsing.c \
 				get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
 				utils/utils.c utils/ft_split.c utils/utils2.c \
-				src/starting_game.c
+				
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
 HEADER_FILES = Includes/cube.h Includes/get_next_line.h
