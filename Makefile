@@ -1,5 +1,5 @@
 SRC_FILES = 	src/parsing.c \
-				get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
+				gnl/get_next_line.c gnl/get_next_line_utils.c \
 				utils/utils.c utils/ft_split.c utils/utils2.c \
 				
 OBJ_FILES = $(SRC_FILES:.c=.o)
