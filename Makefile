@@ -1,5 +1,5 @@
 SRC_FILES = 	src/main.c \
-				src/parse/parsing.c  src/parse/textures_colors.c src/parse/textures_colors2.c \
+				src/parse/index.c  src/parse/textures_colors.c src/parse/textures_colors2.c \
 				src/parse/map.c src/parse/map2.c \
 				gnl/get_next_line.c gnl/get_next_line_utils.c \
 				utils/utils.c utils/ft_split.c utils/utils2.c utils/special_utils.c \
