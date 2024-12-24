@@ -6,7 +6,7 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 20:50:24 by alamini           #+#    #+#             */
-/*   Updated: 2024/12/16 23:00:14 by alamini          ###   ########.fr       */
+/*   Updated: 2024/12/24 18:27:10 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,6 @@ char	*ex_strjoin(char	*s1, char	*s2)
 	return (res);
 }
 
-int count_elements(char **dbl_arr)
-{
-	int i;
-
-	if (!dbl_arr)
-		return (0);	
-	i = 0;
-	while (dbl_arr[i])
-		i++;
-	return (i);
-}
-
 int	ex_strcmp(char *s1, char *s2)
 {
 	int	i;
@@ -56,14 +44,6 @@ int	ex_strcmp(char *s1, char *s2)
 	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
 	return (s1[i] - s2[i]);
-}
-
-int ft_error(char *errmsg)
-{
-	write(2, "Error\n", 6);
-	write(2, errmsg, gnl_strlen(errmsg));
-	write(2, "\n", 1);
-	return (1);
 }
 
 size_t	ex_strlen(const char *s)
@@ -97,22 +77,4 @@ char	*ex_strdup(const char *s1)
 	ptr[i] = '\0';
 	return (ptr);
 }
-int ft_isdigit(int c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
-int is_number(char *number)
-{
-	int i;
 
-	i = 0;
-	while (number[i])
-	{
-		if (!ft_isdigit(number[i]))
-			return (1);
-		i++;
-	}
-	return (0);
-}

@@ -6,7 +6,7 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 23:01:04 by alamini           #+#    #+#             */
-/*   Updated: 2024/12/05 23:01:16 by alamini          ###   ########.fr       */
+/*   Updated: 2024/12/24 18:27:19 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,25 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (result * sign);
+}
+
+int ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
+int is_number(char *number)
+{
+	int i;
+
+	i = 0;
+	while (number[i])
+	{
+		if (!ft_isdigit(number[i]))
+			return (1);
+		i++;
+	}
+	return (0);
 }
