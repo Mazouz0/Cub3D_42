@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   index.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:16:39 by alamini           #+#    #+#             */
-/*   Updated: 2024/12/24 18:23:55 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/01 03:26:08 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,19 @@ t_gdata	*init_data(char *file)
 	return (game);
 }
 
+int	map_direction(char c)
+{
+	if (c == 'E')
+		return (0);
+	if (c == 'S')
+		return (1);
+	if (c == 'W')
+		return (2);
+	if (c == 'N')
+		return (3);
+	return (0);
+}
+
 void	get_player_info(t_map *map)
 {
 	int i;
@@ -69,7 +82,8 @@ void	get_player_info(t_map *map)
 			{
 				map->player.x = j;
 				map->player.y = i;
-				map->direction = map->the_map[i][j];
+				
+				map->direction = map_direction(map->the_map[i][j]);
 				map->the_map[i][j] = '0';
 				return ;
 			}

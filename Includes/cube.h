@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2024/12/24 18:26:40 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/01 03:01:04 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,20 @@
 #include "get_next_line.h"
 # include "../MLX/.MLX42.h"
 # include <unistd.h>
+# include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <math.h>
+
+# define WIND_WID 1920
+# define WIND_HEI 1080
+# define TIL_SIZE 32
+# define FOV 60
+# define MOV_SPEED 2
+# define ROT_SPEED (M_PI / 180 * 1.5)
+# define MAP_SCALE 1.5
+// # define WALL_WIDTH 1
+
 
 typedef struct s_cordinates
 {
@@ -35,7 +47,7 @@ typedef struct s_elements
     int f;
     int c;
     int total;
-}t_elements;
+}	t_elements;
 
 typedef struct s_map
 {
@@ -45,8 +57,8 @@ typedef struct s_map
     int start;
     t_cordinates player;
     int     direction;
-}t_map
-;
+}   t_map;
+
 typedef struct s_gdata
 {
     t_map  map;
@@ -57,12 +69,62 @@ typedef struct s_gdata
     int floor;
     int ceiling;
     char *file;
-} t_gdata;
+}   t_gdata;
 
+//exec start :
 
+typedef struct s_texture
+{
+	mlx_texture_t	*no;
+	mlx_texture_t	*so;
+	mlx_texture_t	*we;
+	mlx_texture_t	*ea;
+}	t_texture;
 
-// 
+typedef struct s_player
+{
+    int		p_x;
+    int		p_y;
+    double	angle_dir;
+    double	fov_rd;
+    int		rot;
+    int		l_r;
+    int		u_d;
+    int		m_x;
+    int		m_y;
+}	t_player;
 
+typedef struct s_ray
+{
+    int		index;
+    double	r_angle;
+    double	horz_x;
+    double	horz_y;
+    double	vert_x;
+    double	vert_y;
+    double	distance;
+    int		flag;
+}	t_ray;
+
+typedef struct s_data
+{
+	char		**map2d;
+	int			map_w;
+	int			map_h;
+	int			f_clr;
+	int			c_clr;
+	t_texture	*txtr;
+}	t_data;
+
+typedef struct s_game
+{
+	mlx_t		*mlx;
+	mlx_image_t	*img;
+	t_data		*dt;
+	t_player	*ply;
+	t_ray		*ray;
+	int			rays_dist[WIND_WID];
+}	t_game;
 
 
 // libft utils
@@ -99,6 +161,10 @@ int get_map(int fd, t_gdata *game);
 int validate_map(t_map map);
 int map_borders(t_map map);
 int row_length(char *line);
+
+// execution functions
+
+t_game	*init_game(t_gdata *pars_data);
 
 
 #endif

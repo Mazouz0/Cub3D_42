@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:19:11 by alamini           #+#    #+#             */
-/*   Updated: 2024/12/24 18:24:17 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/01 05:06:00 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int get_map(int fd, t_gdata *game)
 	
 	i = -1;
 	grid = malloc((sizeof(char *) * game->map.max_row) + 1);
-	if (fd == -1)
+	if (!grid || fd == -1)
 		return (ft_error("Allocation Error !!"), 1);
 	close(fd);
 	fd = open(game->file, O_RDONLY);
@@ -71,14 +71,22 @@ int	is_sourounded_by_void(t_map map, int y, int x)
 	grid = map.the_map;
 	if (!x || !y || x == map.max_column - 1 || y == map.max_row - 1)
 		return (0);
-	if (!in_set("01", grid[y - 1][x]))
+	if (in_set(" ", grid[y - 1][x]))
 		return (1);
-	else if (!in_set("01", grid[y + 1][x]))
+	else if (in_set(" ", grid[y + 1][x]))
 		return (1);
-	else if (!in_set("01", grid[y][x - 1]))
+	else if (in_set(" ", grid[y][x - 1]))
 		return (1);
-	else if (!in_set("01", grid[y][x + 1]))
+	else if (in_set(" ", grid[y][x + 1]))
 		return (1);
+	// if (!in_set("01", grid[y - 1][x]))
+	// 	return (1);
+	// else if (!in_set("01", grid[y + 1][x]))
+	// 	return (1);
+	// else if (!in_set("01", grid[y][x - 1]))
+	// 	return (1);
+	// else if (!in_set("01", grid[y][x + 1]))
+	// 	return (1);
 	return (0);
 }
 
@@ -100,7 +108,7 @@ int validate_map(t_map map)
 				{
 					ft_error("Invalid Map In");
 					return (printf("X= %d, Y= %d\n", j, i), 1);
-				}	
+				}
 			}
 			j++;
 		}
