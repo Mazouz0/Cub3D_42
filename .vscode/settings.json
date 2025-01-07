@@ -1,7 +1,9 @@
 {
     "files.associations": {
-        "sstream": "c",
-        "cube.h": "c",
-        "mlx.h": "c"
-    }
+		"*.c": "c",
+		"sstream": "c",
+		"cube.h": "c",
+		"mlx.h": "c",
+		"complex": "c"
+	}
 }

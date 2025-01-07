@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 02:58:51 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/07 10:46:56 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/07 23:24:51 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_data	*init_ex_data(t_gdata *pars_data)
 {
 	t_data	*data;
 
-	data = malloc(sizeof(t_data));
+	data = ft_calloc(sizeof(t_data), 1);
 	if (!data)
 		return (NULL);
 	data->map2d = pars_data->map.the_map;
@@ -50,7 +50,7 @@ t_player	*init_player(t_gdata *pars_data)
 {
 	t_player	*player;
 
-	player = malloc(sizeof(t_player));
+	player = ft_calloc(sizeof(t_player), 1);
 	if (!player)
 		return (NULL);
 	player->p_x = pars_data->map.player.x * TIL_SIZE + TIL_SIZE / 2;
@@ -67,7 +67,7 @@ void	set_dist(t_game *game)
 	i = 0;
 	while (i < WIND_WID)
 	{
-		game->rays_dist[i] = 0;
+		game->rays_dist[i] = TIL_SIZE;
 		i++;
 	}
 }
@@ -76,7 +76,7 @@ t_game	*init_game(t_gdata *pars_data)
 {
 	t_game	*game;
 
-	game = malloc(sizeof(t_game));
+	game = ft_calloc(sizeof(t_game), 1);
 	if (!game)
 		return (NULL);
 	game->mlx = mlx_init(WIND_WID, WIND_HEI, "Cub3D", false);

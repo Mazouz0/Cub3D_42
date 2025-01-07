@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/07 10:45:28 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/07 21:57:32 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define FOV 60
 # define MOV_SPEED 2
 # define ROT_SPEED (M_PI / 180 * 1.5)
-# define MAP_SCALE 1.5
+# define MAP_SCALE 1
 // # define WALL_WIDTH 1
 
 
@@ -164,10 +164,13 @@ int row_length(char *line);
 
 // execution functions
 
-void   ft_bzero(void *s, size_t n);
+void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 t_game	*init_game(t_gdata *pars_data);
 void	game_loop(void *param);
+void	key_hook(mlx_key_data_t key_data, void *param);
+void	draw_map(t_game *game);
+void	player_hook(t_game *game, double move_x, double move_y);
 
 
 #endif

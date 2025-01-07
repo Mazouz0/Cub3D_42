@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:07:05 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/07 11:22:35 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/07 22:00:24 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void	ft_clean(t_game *game)
 {
 	(void)game;
+	mlx_delete_image(game->mlx, game->img);
+	mlx_terminate(game->mlx);
 	exit(0);
 }
 
