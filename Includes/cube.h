@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/01 03:01:04 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/07 10:45:28 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,10 @@ int row_length(char *line);
 
 // execution functions
 
+void   ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t count, size_t size);
 t_game	*init_game(t_gdata *pars_data);
+void	game_loop(void *param);
 
 
 #endif

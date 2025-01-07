@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 02:58:51 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/01 03:26:58 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/07 10:46:56 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,21 @@ t_player	*init_player(t_gdata *pars_data)
 		return (NULL);
 	player->p_x = pars_data->map.player.x * TIL_SIZE + TIL_SIZE / 2;
 	player->p_y = pars_data->map.player.y * TIL_SIZE + TIL_SIZE / 2;
-	printf("angle dir: %d\n", pars_data->map.direction);
-	// player->angle_dir = pars_data->map.direction * (M_PI / 180);
-	
+	player->angle_dir = pars_data->map.direction * (M_PI / 2);
+	player->fov_rd = (FOV * (M_PI / 180));
 	return (player);
+}
+
+void	set_dist(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < WIND_WID)
+	{
+		game->rays_dist[i] = 0;
+		i++;
+	}
 }
 
 t_game	*init_game(t_gdata *pars_data)
@@ -76,8 +87,9 @@ t_game	*init_game(t_gdata *pars_data)
 		return (NULL);
 	game->dt = init_ex_data(pars_data);
 	game->ply = init_player(pars_data);
-
-
-
+	game->ray = (t_ray *)ft_calloc(sizeof(t_ray), 1);
+	if (!game->dt || !game->ply || !game->ray)
+		return (NULL);
+	set_dist(game);
 	return (game);
 }
