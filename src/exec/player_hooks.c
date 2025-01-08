@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:59:40 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/07 23:21:06 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/08 21:21:24 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,23 @@ void	move_player(t_game *game, double move_x, double move_y)
 	int		map_x;
 	int		new_x;
 	int		new_y;
+	char	**map;
 
-	new_x = (int)round(game->ply->p_x + move_x); // get the new x position
-	new_y = (int)round(game->ply->p_y + move_y); // get the new y position
-	map_x = (new_x / TIL_SIZE); // get the x position in the map
-	map_y = (new_y / TIL_SIZE); // get the y position in the map
-	if (game->dt->map2d[map_y][map_x] != '1') // check the wall hit and the diagonal wall hit
+	new_x = (int)round(game->ply->p_x + move_x);
+	new_y = (int)round(game->ply->p_y + move_y);
+	map_x = (new_x / TIL_SIZE);
+	map_y = (new_y / TIL_SIZE);
+	map = game->dt->map2d;
+	if (map[map_y][map_x] != '1' && map[map_y][game->ply->p_x / TIL_SIZE] != '1'
+		&& map[game->ply->p_y / TIL_SIZE][map_x] != '1')
 	{
-		game->ply->p_x = new_x; // move the player
-		game->ply->p_y = new_y; // move the player
+		game->ply->p_x = new_x;
+		game->ply->p_y = new_y;
+	}
+	else if (map[game->ply->p_y / TIL_SIZE][map_x] != '1' && map[map_y][map_x] != '1')
+	{
+		game->ply->p_x = new_x;
+		game->ply->p_y = new_y;
 	}
 }
 
