@@ -3,9 +3,9 @@ SO ./textures/south_texture.png
 WE ./textures/west_texture.png
 EA ./textures/east_texture.png
 
-F 220,100,50
+F 192,57,43
 
-C 200,110,36
+C 52,152,219
 
 
 

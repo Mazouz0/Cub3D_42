@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/09 06:19:19 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/09 09:57:13 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 # define WIND_WID 1920
 # define WIND_HEI 1080
-# define TIL_SIZE 32
+# define TIL_SIZE 16
 # define FOV 60
 # define MOV_SPEED 2
 # define ROT_SPEED (M_PI / 180 * 1.5)

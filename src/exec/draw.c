@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:34:33 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/09 07:28:21 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/09 09:37:31 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,9 +144,16 @@ void	drwa_plyr(t_game *game)
 	}
 	
 }
+void	draw_background(t_game *game)
+{
+	draw_rect(game, 0, 0, WIND_WID, WIND_HEI / 2, game->dt->c_clr);
+	draw_rect(game, 0, WIND_HEI / 2, WIND_WID, WIND_HEI / 2, game->dt->f_clr);
+}
 
 void	draw_map(t_game *game)
 {
+	draw_background(game);
+	// draw_3d(game);
 	draw_2d(game);
 	drwa_plyr(game);
 }
