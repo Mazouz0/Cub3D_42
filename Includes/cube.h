@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/07 21:57:32 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/09 06:19:19 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,8 @@ void	game_loop(void *param);
 void	key_hook(mlx_key_data_t key_data, void *param);
 void	draw_map(t_game *game);
 void	player_hook(t_game *game, double move_x, double move_y);
-
+void	ray_cast(t_game *game);
+double	nor_angle(double angle);
+int		unit_circle(float angle, char c);
 
 #endif

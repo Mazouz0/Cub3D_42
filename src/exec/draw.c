@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:34:33 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/07 12:56:08 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/09 07:28:21 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,8 +136,8 @@ void	drwa_plyr(t_game *game)
 	while (i < WIND_WID)
 	{
 		draw_line(game->img, p_x, p_y,
-				  p_x + cos(angle) * TIL_SIZE,
-				  p_y + sin(angle) * TIL_SIZE,
+				  p_x + cos(angle) * game->rays_dist[i],
+				  p_y + sin(angle) * game->rays_dist[i],
 				  0xFF0000BB);
 		angle += game->ply->fov_rd / WIND_WID;
 		i++;
