@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/09 09:57:13 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/10 02:16:33 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,5 +174,10 @@ void	player_hook(t_game *game, double move_x, double move_y);
 void	ray_cast(t_game *game);
 double	nor_angle(double angle);
 int		unit_circle(float angle, char c);
+void	draw_3d(t_game *game, t_ray *ray, int index);
+void	put_pixel(mlx_image_t *img, int x, int y, int color);
+void	draw_circle(mlx_image_t *mlx, int x, int y, long color);
+void	draw_line(mlx_image_t *img, int x1, int y1, int x2, int y2, uint32_t color);
+void	draw_rect(t_game *game, int x, int y, int w, int h, int color);
 
 #endif

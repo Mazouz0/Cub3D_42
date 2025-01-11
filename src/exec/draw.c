@@ -6,90 +6,11 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:34:33 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/09 09:37:31 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/10 04:44:27 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/cube.h"
-
-void	put_pixel(mlx_image_t *img, int x, int y, int color)
-{
-	if (x < 0 || x >= WIND_WID)
-		return ;
-	if (y < 0 || y >= WIND_HEI)
-		return ;
-	mlx_put_pixel(img , x, y, color);
-}
-
-void	draw_circle(mlx_image_t *mlx, int x, int y, long color)
-{
-	int i;
-	int j;
-	int r;
-	int r2;
-
-	r = 3;
-	r2 = r * r;
-	i = -r;
-	while (i <= r)
-	{
-		j = -r;
-		while (j <= r)
-		{
-			if ((i * i) + (j * j) <= r2)
-				put_pixel(mlx, x + i, y + j, color);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	draw_line(mlx_image_t *img, int x1, int y1, int x2, int y2, uint32_t color)
-{
-    int dx = abs(x2 - x1);
-    int dy = abs(y2 - y1);
-    int sx = (x1 < x2) ? 1 : -1; // Step in x direction
-    int sy = (y1 < y2) ? 1 : -1; // Step in y direction
-    int err = dx - dy;
-
-    while (1)
-	{
-        put_pixel(img, x1, y1, color); // Draw the current pixel
-
-        // Check if the end point is reached
-        if (x1 == x2 && y1 == y2)
-			break;
-			
-        int e2 = 2 * err;
-
-        if (e2 > -dy) {
-            err -= dy;
-            x1 += sx;
-        }
-        if (e2 < dx) {
-            err += dx;
-            y1 += sy;
-        }
-    }
-}
-
-void	draw_rect(t_game *game, int x, int y, int w, int h, int color)	// draw the rectangle
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < h)
-	{
-		j = 0;
-		while (j < w)
-		{
-			put_pixel(game->img, x + j, y + i, color);
-			j++;
-		}
-		i++;
-	}
-}
 
 void	draw_2d(t_game *game)
 {
@@ -113,8 +34,6 @@ void	draw_2d(t_game *game)
 		i ++;
 	}
 }
-
-
 
 void	drwa_plyr(t_game *game)
 {
@@ -144,6 +63,48 @@ void	drwa_plyr(t_game *game)
 	}
 	
 }
+
+void	ray_3d(t_game *game,int index,int i,t_ray *ray)
+{
+	int		no = 0x2ECC71BB;
+	int		so = 0xDC7633BB;
+	int		we = 0x8E44ADBB;
+	int		ea = 0xF1C40FBB;
+	int		color;
+
+	if (ray->flag)
+		color = (ray->r_angle > 0 && ray->r_angle < M_PI) ? so : no;
+	else
+		color = (ray->r_angle > M_PI / 2 && ray->r_angle < 3 * M_PI / 2) ? we : ea;
+		
+	put_pixel(game->img, index, i, color);
+}
+
+void	draw_3d(t_game *game, t_ray *ray, int index)
+{
+	double	dist;
+	double	wall_h;
+	double	dist_p;
+	int		i;
+
+	i = 0;
+	dist = ray->distance * cos(ray->r_angle - game->ply->angle_dir);
+	dist_p = (WIND_WID / 2) / tan(game->ply->fov_rd / 2);
+	wall_h = (TIL_SIZE / dist) * dist_p;
+	if (wall_h > WIND_HEI)
+		wall_h = WIND_HEI;
+	while (i < WIND_HEI)
+	{
+		if (i < WIND_HEI / 2 - wall_h / 2)
+			put_pixel(game->img, index, i, game->dt->c_clr);
+		else if (i < WIND_HEI / 2 + wall_h / 2)
+			ray_3d(game, index, i, ray);
+		else
+			put_pixel(game->img, index, i, game->dt->f_clr);
+		i++;
+	}
+}
+
 void	draw_background(t_game *game)
 {
 	draw_rect(game, 0, 0, WIND_WID, WIND_HEI / 2, game->dt->c_clr);
@@ -152,8 +113,8 @@ void	draw_background(t_game *game)
 
 void	draw_map(t_game *game)
 {
-	draw_background(game);
-	// draw_3d(game);
+	// draw_background(game);
+	ray_cast(game);
 	draw_2d(game);
 	drwa_plyr(game);
 }

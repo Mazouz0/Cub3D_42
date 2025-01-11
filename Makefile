@@ -3,8 +3,8 @@ SRC_FILES = 	src/main.c \
 				src/parse/map.c src/parse/map2.c \
 				gnl/get_next_line.c gnl/get_next_line_utils.c \
 				utils/utils.c utils/ft_split.c utils/utils2.c utils/special_utils.c \
-				src/exec/init_funcs.c src/exec/exec.c src/exec/ray_casting.c\
-				src/exec/utils_1.c src/exec/draw.c src/exec/player_hooks.c\
+				src/exec/init_funcs.c src/exec/exec.c src/exec/ray_casting.c \
+				src/exec/utils_1.c src/exec/draw.c src/exec/player_hooks.c src/exec/draw_utils.c \
 				 
 				
 OBJ_FILES = $(SRC_FILES:.c=.o)

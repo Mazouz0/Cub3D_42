@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 21:29:20 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/09 07:25:14 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/10 02:16:08 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,27 +121,26 @@ void	ray_cast(t_game *game)
 	double	h_inter;
 	double	v_inter;
 	int		ray;
-	t_ray	*ray_dt;
 
 	ray = 0;
-	ray_dt = game->ray;
-	ray_dt->r_angle = game->ply->angle_dir - (game->ply->fov_rd / 2);
+	game->ray->r_angle = game->ply->angle_dir - (game->ply->fov_rd / 2);
 	while (ray < WIND_WID)
 	{
-		ray_dt->flag = 0;
-		h_inter = horz_inter(ray_dt, game);
-		v_inter = vert_inter(ray_dt, game);
+		game->ray->flag = 0;
+		h_inter = horz_inter(game->ray, game);
+		v_inter = vert_inter(game->ray, game);
 		
 		if (v_inter <= h_inter)
-			ray_dt->distance = v_inter;
+			game->ray->distance = v_inter;
 		else
 		{
-			ray_dt->distance = h_inter;
-			ray_dt->flag = 1;
+			game->ray->distance = h_inter;
+			game->ray->flag = 1;
 		}
-		game->rays_dist[ray] = ray_dt->distance;
+		game->rays_dist[ray] = game->ray->distance;
+		draw_3d(game, game->ray, ray);
 		ray ++;
-		ray_dt->r_angle += game->ply->fov_rd / WIND_WID;
+		game->ray->r_angle += game->ply->fov_rd / WIND_WID;
 		
 	}
 }
