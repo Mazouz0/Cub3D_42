@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/10 02:16:33 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/12 04:16:32 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,5 +179,6 @@ void	put_pixel(mlx_image_t *img, int x, int y, int color);
 void	draw_circle(mlx_image_t *mlx, int x, int y, long color);
 void	draw_line(mlx_image_t *img, int x1, int y1, int x2, int y2, uint32_t color);
 void	draw_rect(t_game *game, int x, int y, int w, int h, int color);
-
+// textures
+void ray_3d(t_game *game, int index, t_ray *ray, double wall_height);
 #endif
