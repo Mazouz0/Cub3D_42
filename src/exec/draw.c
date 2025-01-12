@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:34:33 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/10 04:44:27 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/12 04:06:08 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,7 @@ void	drwa_plyr(t_game *game)
 	
 }
 
-void	ray_3d(t_game *game,int index,int i,t_ray *ray)
-{
-	int		no = 0x2ECC71BB;
-	int		so = 0xDC7633BB;
-	int		we = 0x8E44ADBB;
-	int		ea = 0xF1C40FBB;
-	int		color;
 
-	if (ray->flag)
-		color = (ray->r_angle > 0 && ray->r_angle < M_PI) ? so : no;
-	else
-		color = (ray->r_angle > M_PI / 2 && ray->r_angle < 3 * M_PI / 2) ? we : ea;
-		
-	put_pixel(game->img, index, i, color);
-}
 
 void	draw_3d(t_game *game, t_ray *ray, int index)
 {
@@ -93,16 +79,12 @@ void	draw_3d(t_game *game, t_ray *ray, int index)
 	wall_h = (TIL_SIZE / dist) * dist_p;
 	if (wall_h > WIND_HEI)
 		wall_h = WIND_HEI;
+	while (i < WIND_HEI / 2 - wall_h / 2)
+		put_pixel(game->img, index, i ++, game->dt->c_clr);
+	ray_3d(game, index, ray, wall_h);
+	i = WIND_HEI / 2 + wall_h / 2;
 	while (i < WIND_HEI)
-	{
-		if (i < WIND_HEI / 2 - wall_h / 2)
-			put_pixel(game->img, index, i, game->dt->c_clr);
-		else if (i < WIND_HEI / 2 + wall_h / 2)
-			ray_3d(game, index, i, ray);
-		else
-			put_pixel(game->img, index, i, game->dt->f_clr);
-		i++;
-	}
+		put_pixel(game->img, index, i ++, game->dt->f_clr);
 }
 
 void	draw_background(t_game *game)
