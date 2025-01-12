@@ -6,7 +6,7 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:34:33 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/12 04:23:29 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/12 05:00:26 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,10 @@ void	draw_3d(t_game *game, t_ray *ray, int index)
 	dist = ray->distance * cos(ray->r_angle - game->ply->angle_dir);
 	dist_p = (WIND_WID / 2) / tan(game->ply->fov_rd / 2);
 	wall_h = (TIL_SIZE / dist) * dist_p;
-	if (wall_h > WIND_HEI)
-		wall_h = WIND_HEI;
 	while (i < WIND_HEI / 2 - wall_h / 2)
 		put_pixel(game->img, index, i ++, game->dt->c_clr);
 	ray_3d(game, index, ray, wall_h);
-	// i = WIND_HEI / 2 + wall_h / 2;
+	i = WIND_HEI / 2 + wall_h / 2;
 	// while (i < WIND_HEI)
 	// {
 	// 	if (i < WIND_HEI / 2 - wall_h / 2)

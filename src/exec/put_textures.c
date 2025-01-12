@@ -38,11 +38,9 @@ double	get_x_o(mlx_texture_t	*texture, t_game *game)
 	double	x_o;
 
 	if (game->ray->flag == 1)
-		x_o = (int)fmodf((game->ray->horz_x * \
-		(texture->width / TIL_SIZE)), texture->width);
+		x_o = (int)fmodf((game->ray->horz_x * (texture->width / TIL_SIZE)), texture->width);
 	else
-		x_o = (int)fmodf((game->ray->vert_y * \
-		(texture->width / TIL_SIZE)), texture->width);
+		x_o = (int)fmodf((game->ray->vert_y * (texture->width / TIL_SIZE)), texture->width);
 	return (x_o);
 }
 
