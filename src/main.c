@@ -6,7 +6,7 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:07:05 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 04:26:15 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/13 04:27:12 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,24 @@ void	ft_clean(t_game *game, char *msg)
 {
 	if (msg)
 		printf("%s\n", msg);
-	
+	if (game)
+	{
+		if (game->mlx)
+			mlx_terminate(game->mlx);
+		if (game->img)
+			mlx_delete_image(game->mlx, game->img);
+		if (game->dt && game->dt->txtr)
+		{
+			if (game->dt->txtr->no)
+				mlx_delete_texture(game->dt->txtr->no);
+			if (game->dt->txtr->ea)
+				mlx_delete_texture(game->dt->txtr->ea);
+			if (game->dt->txtr->so)
+				mlx_delete_texture(game->dt->txtr->so);
+			if (game->dt->txtr->we)
+				mlx_delete_texture(game->dt->txtr->we);
+		}
+	}
 	ft_malloc(0, 1);
 	exit(0);
 }
@@ -57,7 +74,7 @@ void	key_hook(mlx_key_data_t key_data, void *param)
 	else if (key_data.key == MLX_KEY_RIGHT && key_data.action == MLX_PRESS)
 		game->ply->rot = 1, printf("rotate right => %d\n", game->ply->rot);
 	ft_reles(key_data, game);
-		
+
 }
 
 int	main(int argc, char **argv)
