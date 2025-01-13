@@ -6,7 +6,7 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:07:05 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 04:27:12 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/13 05:35:09 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	main(int argc, char **argv)
 {
 	t_gdata	*pars_data;
 	t_game	*game;
-	
+
 	pars_data = parsing(argc, argv);
 	if (!pars_data)
 		return (1);
