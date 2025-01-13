@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   special_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:57:37 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 01:29:42 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/13 06:58:18 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,13 @@ int	in_set(char *set, char c)
 	return (0);
 }
 
-void view_map(t_gdata *game)
+void	view_map(t_gdata *game)
 {
-	int i = 0;
-	int j = 0;
-	
+	int	i;
+	int	j;
 
+	i = 0;
+	j = 0;
 	while (i < game->map.max_row)
 	{
 		j = 0;

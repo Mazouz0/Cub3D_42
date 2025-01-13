@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 23:01:04 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 04:43:20 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/13 06:55:54 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,22 @@ int	ft_atoi(const char *str)
 	{
 		result = result * 10 + str[i] - 48;
 		if (result >= 922337203685477580 && str[i + 1])
-			return (handle_over_flow(result, &str[i + 1], sign)); 
+			return (handle_over_flow(result, &str[i + 1], sign));
 		i++;
 	}
 	return (result * sign);
 }
 
-int ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
 }
 
-int is_number(char *number)
+int	is_number(char *number)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (number[i])

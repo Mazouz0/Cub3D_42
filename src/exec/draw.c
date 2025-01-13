@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:34:33 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/13 05:10:50 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 06:54:42 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	draw_2d(t_game *game)
 		while (map[i][j])
 		{
 			if (map[i][j] == '1')
-				draw_rect(game, j * TIL_SIZE, i * TIL_SIZE, TIL_SIZE, TIL_SIZE, 0x00FFBBBB);
+				draw_rect(game, j * TIL_SIZE, i * TIL_SIZE, 0x00FFBBBB);
 			else
-				draw_rect(game, j * TIL_SIZE, i * TIL_SIZE, TIL_SIZE, TIL_SIZE, 0xFFFFFFBB);
+				draw_rect(game, j * TIL_SIZE, i * TIL_SIZE, 0xFFFFFFBB);
 			j ++;
 		}
 		i ++;
@@ -79,16 +79,8 @@ void	draw_3d(t_game *game, t_ray *ray, int index)
 		put_pixel(game->img, index, i ++, game->dt->c_clr);
 	ray_3d(game, index, ray, wall_h);
 	i = WIND_HEI / 2 + wall_h / 2;
-	// while (i < WIND_HEI)
-	// {
-	// 	if (i < WIND_HEI / 2 - wall_h / 2)
-	// 		put_pixel(game->img, index, i, game->dt->c_clr);
-	// 	else if (i < WIND_HEI / 2 + wall_h / 2)
-	// 		ray_3d(game, index, i, ray);
-	// 	else
-	// 		put_pixel(game->img, index, i, game->dt->f_clr);
-	// 	i++;
-	// }
+	while (i < WIND_HEI)
+		put_pixel(game->img, index, i ++, game->dt->f_clr);
 }
 
 void	draw_map(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 01:53:18 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/10 02:04:30 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 06:52:11 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,16 @@ void	draw_line(mlx_image_t *img, int x1, int y1, int x2, int y2, uint32_t color)
     }
 }
 
-void	draw_rect(t_game *game, int x, int y, int w, int h, int color)	// draw the rectangle
+void	draw_rect(t_game *game, int x, int y, int color)	// draw the rectangle
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < h)
+	while (i < TIL_SIZE)
 	{
 		j = 0;
-		while (j < w)
+		while (j < TIL_SIZE)
 		{
 			put_pixel(game->img, x + j, y + i, color);
 			j++;

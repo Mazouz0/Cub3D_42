@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 20:50:24 by alamini           #+#    #+#             */
-/*   Updated: 2024/12/24 18:27:10 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/13 06:57:44 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,3 @@ char	*ex_strdup(const char *s1)
 	ptr[i] = '\0';
 	return (ptr);
 }
-
