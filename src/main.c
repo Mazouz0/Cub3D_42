@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:07:05 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 04:32:11 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 05:07:21 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	ft_clean(t_game *game, char *msg)
 {
+	if (ex_strcmp("Game over\n", msg))
+		printf("Error\n");
 	if (msg)
-		printf("%s\n", msg);
+		printf("\t%s\n", msg);
 	if (game)
 	{
 		if (game->mlx)
