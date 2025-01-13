@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:07:05 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 02:01:45 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 02:08:08 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ int	main(int argc, char **argv)
 	
 	pars_data = parsing(argc, argv);
 	if (!pars_data)
-		return (1);
+		return (ft_clean(NULL, "Parsing failed"), 1);
 	game = init_game(pars_data);
 	if (!game)
-		return (ft_error("Game initialization failed"));
+		return (ft_clean(NULL, "Game initialization failed"), 1);
 	mlx_key_hook(game->mlx, key_hook, game);
 	mlx_loop_hook(game->mlx, game_loop, game);
 	mlx_loop(game->mlx);

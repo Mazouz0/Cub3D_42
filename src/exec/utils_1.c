@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 05:43:14 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/08 22:34:51 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 02:08:52 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
 
-	ptr = malloc(count * size);
+	ptr = ft_malloc(count * size, 0);
 	if (!ptr)
 		return (NULL);
 	ft_bzero(ptr, count * size);
