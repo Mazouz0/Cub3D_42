@@ -6,12 +6,11 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 10:44:55 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/13 05:58:19 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 07:10:08 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/cube.h"
-
 
 void	game_loop(void *param)
 {
@@ -23,5 +22,4 @@ void	game_loop(void *param)
 	player_hook(game, 0, 0);
 	draw_map(game);
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
-
 }

@@ -6,14 +6,14 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 06:51:36 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 07:07:40 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBE_H
 # define CUBE_H
 
-#include "get_next_line.h"
+# include "get_next_line.h"
 # include "../MLX/.MLX42.h"
 # include <unistd.h>
 # include <stdlib.h>
@@ -27,49 +27,49 @@
 # define TIL_SIZE 16
 # define FOV 60
 # define MOV_SPEED 2
-# define ROT_SPEED (M_PI / 180 * 1.5)
+# define ROT_SPEED 0.05
 # define MAP_SCALE 1
 # define WALL_BUFFER 2
 
 typedef struct s_cordinates
 {
-	int x;
-	int y;
-} t_cordinates;
+	int	x;
+	int	y;
+}	t_cordinates;
 
 typedef struct s_elements
 {
-	int map;
-	int no;
-	int so;
-	int we;
-	int ea;
-	int f;
-	int c;
-	int total;
+	int	map;
+	int	no;
+	int	so;
+	int	we;
+	int	ea;
+	int	f;
+	int	c;
+	int	total;
 }	t_elements;
 
 typedef struct s_map
 {
-	char **the_map;
-	int max_column;
-	int max_row;
-	int start;
-	t_cordinates player;
-	int     direction;
-}   t_map;
+	char			**the_map;
+	int				max_column;
+	int				max_row;
+	int				start;
+	t_cordinates	player;
+	int				direction;
+}	t_map;
 
 typedef struct s_gdata
 {
-	t_map  map;
-	char *north;
-	char *south;
-	char *west;
-	char *east;
-	int floor;
-	int ceiling;
-	char *file;
-}   t_gdata;
+	t_map	map;
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	int		floor;
+	int		ceiling;
+	char	*file;
+}	t_gdata;
 
 //exec start :
 
@@ -129,38 +129,38 @@ typedef struct s_game
 // libft utils
 char	*ex_strjoin(char	*s1, char	*s2);
 char	**ft_split(char const *s, char c);
-int	    ex_strcmp(char *s1, char *s2);
+int		ex_strcmp(char *s1, char *s2);
 size_t	ex_strlen(const char *s);
 char	*ex_strdup(const char *s1);
-int     ft_isdigit(int c);
-int     is_number(char *number);
-int	    ft_atoi(const char *str);
+int		ft_isdigit(int c);
+int		is_number(char *number);
+int		ft_atoi(const char *str);
 char	*my_strdup(const char *s1);
 
 // special utils
-int     get_rgba(int r, int g, int b, int a);
-int     count_elements(char **dbl_arr);
-void    view_map(t_gdata *game);
-int     in_set(char *set, char c);
-int     ft_error(char *errmsg);
+int		get_rgba(int r, int g, int b, int a);
+int		count_elements(char **dbl_arr);
+void	view_map(t_gdata *game);
+int		in_set(char *set, char c);
+int		ft_error(char *errmsg);
 
 // Game phases
 t_gdata	*parsing(int argc, char **argv);
 
 // parsing utils
 // --> textures and colors
-int     textures_colors_parse(int fd, t_gdata *game);
-void    set_color(char *identifier, int arr[3], t_gdata *game);
-void    set_texture(char *identifier, char *path, t_gdata *game);
-int     validate_texture_color(char *line, t_elements *elements, t_gdata *game);
+int		textures_colors_parse(int fd, t_gdata *game);
+void	set_color(char *identifier, int arr[3], t_gdata *game);
+void	set_texture(char *identifier, char *path, t_gdata *game);
+int		validate_texture_color(char *line, t_elements *elements, t_gdata *game);
 int		fill_rgb(t_gdata *game, char **dbl_ptr, char *identifier);
 char	*get_line(char *tmp);
 // --> map
-int map_parse(int fd, t_gdata *game);
-int get_map(int fd, t_gdata *game);
-int validate_map(t_map map);
-int map_borders(t_map map);
-int row_length(char *line);
+int		map_parse(int fd, t_gdata *game);
+int		get_map(int fd, t_gdata *game);
+int		validate_map(t_map map);
+int		map_borders(t_map map);
+int		row_length(char *line);
 
 // execution functions
 

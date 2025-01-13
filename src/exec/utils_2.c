@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 00:44:20 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/13 04:57:38 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 07:16:21 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ void	*ft_malloc(ssize_t size, int flag)
 	if (!ptr)
 		return (NULL);
 	ptr_list[i++] = ptr;
-	return (ptr);		
+	return (ptr);
 }
