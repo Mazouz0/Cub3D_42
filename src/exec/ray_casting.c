@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 21:29:20 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/13 05:12:49 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 05:38:25 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,5 @@ void	ray_cast(t_game *game)
 		draw_3d(game, game->ray, ray);
 		ray ++;
 		game->ray->r_angle += game->ply->fov_rd / WIND_WID;
-		
 	}
 }

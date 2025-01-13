@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 04:28:18 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/13 06:21:54 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define MOV_SPEED 2
 # define ROT_SPEED (M_PI / 180 * 1.5)
 # define MAP_SCALE 1
-// # define WALL_WIDTH 1
+# define WALL_BUFFER 2
 
 typedef struct s_cordinates
 {

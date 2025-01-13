@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:59:40 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/08 21:21:24 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 06:28:29 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,24 @@ void	rotate_player(t_game *game, int i)
 	}
 }
 
+int	norm_pos_x(char **map, int map_x, int map_y, int new_x)
+{
+	if (map[map_y][map_x + 1] == '1' && (new_x % TIL_SIZE) > (TIL_SIZE - WALL_BUFFER))
+        return (map_x * TIL_SIZE) + (TIL_SIZE - WALL_BUFFER);
+    if (map[map_y][map_x - 1] == '1' && (new_x % TIL_SIZE) < WALL_BUFFER)
+        return (map_x * TIL_SIZE) + WALL_BUFFER;
+	return (new_x);
+}
+
+int	norm_pos_y(char **map, int map_x, int map_y, int new_y)
+{
+	if (map[map_y + 1][map_x] == '1' && (new_y % TIL_SIZE) > (TIL_SIZE - WALL_BUFFER))
+        return (map_y * TIL_SIZE) + (TIL_SIZE - WALL_BUFFER);
+    if (map[map_y - 1][map_x] == '1' && (new_y % TIL_SIZE) < WALL_BUFFER)
+        return (map_y * TIL_SIZE) + WALL_BUFFER;
+	return (new_y);
+}
+
 void	move_player(t_game *game, double move_x, double move_y)
 {
 	int		map_y;
@@ -41,6 +59,8 @@ void	move_player(t_game *game, double move_x, double move_y)
 	map_x = (new_x / TIL_SIZE);
 	map_y = (new_y / TIL_SIZE);
 	map = game->dt->map2d;
+	new_x = norm_pos_x(map, map_x, map_y, new_x);
+	new_y = norm_pos_y(map, map_x, map_y, new_y);
 	if (map[map_y][map_x] != '1' && map[map_y][game->ply->p_x / TIL_SIZE] != '1'
 		&& map[game->ply->p_y / TIL_SIZE][map_x] != '1')
 	{
