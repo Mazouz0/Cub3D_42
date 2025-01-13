@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 02:58:51 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/07 23:24:51 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 05:00:50 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,17 +79,17 @@ t_game	*init_game(t_gdata *pars_data)
 	game = ft_calloc(sizeof(t_game), 1);
 	if (!game)
 		return (NULL);
-	game->mlx = mlx_init(WIND_WID, WIND_HEI, "Cub3D", false);
-	if (!game->mlx)
-		return (NULL);
-	game->img = mlx_new_image(game->mlx, WIND_WID, WIND_HEI);
-	if (!game->img)
-		return (NULL);
 	game->dt = init_ex_data(pars_data);
 	game->ply = init_player(pars_data);
 	game->ray = (t_ray *)ft_calloc(sizeof(t_ray), 1);
 	if (!game->dt || !game->ply || !game->ray)
-		return (NULL);
+		return (ft_malloc(0, 1));
 	set_dist(game);
+	game->mlx = mlx_init(WIND_WID, WIND_HEI, "Cub3D", false);
+	if (!game->mlx)
+		return (ft_clean(game, "mlx_init failed"), NULL);
+	game->img = mlx_new_image(game->mlx, WIND_WID, WIND_HEI);
+	if (!game->img)
+		return (ft_clean(game, "mlx_new_image failed"), NULL);
 	return (game);
 }

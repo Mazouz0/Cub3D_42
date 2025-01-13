@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 21:29:20 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/10 02:16:08 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 05:12:49 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,9 @@ double	vert_inter(t_ray *ray_dt, t_game *game)
 	xinter = floor(game->ply->p_x / TIL_SIZE) * TIL_SIZE;
 	pixel = inter_check(ray_dt->r_angle, &xinter, &xstep, 0);
 	yinter = game->ply->p_y + (xinter - game->ply->p_x) * tan(ray_dt->r_angle);
-	
 	if ((unit_circle(ray_dt->r_angle, 'x') && ystep < 0)
 		|| (!unit_circle(ray_dt->r_angle, 'x') && ystep > 0))
-		ystep *= -1;
-		
+		ystep *= -1; 
 	while (wall_hit(xinter - pixel, yinter, game))
 	{
 		xinter += xstep;

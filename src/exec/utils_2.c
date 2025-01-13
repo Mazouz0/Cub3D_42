@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 00:44:20 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/13 01:28:37 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/13 04:57:38 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	*free_all(void **ptr_list, int *i)
 	int	j;
 
 	j = 0;
+	if (!ptr_list || (*i) == 0)
+		return (NULL);
 	while (ptr_list[j])
 	{
 		free(ptr_list[j]);

@@ -6,7 +6,7 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:07:05 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 05:35:09 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/13 05:35:41 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	ft_clean(t_game *game, char *msg)
 {
+	if (ex_strcmp("Game over\n", msg))
+		printf("Error\n");
 	if (msg)
-		printf("%s\n", msg);
+		printf("\t%s\n", msg);
 	if (game)
 	{
 		if (game->mlx)
@@ -62,17 +64,17 @@ void	key_hook(mlx_key_data_t key_data, void *param)
 	if (key_data.key == MLX_KEY_ESCAPE)
 		ft_clean(game, "Game over\n");
 	else if (key_data.key == MLX_KEY_A && key_data.action == MLX_PRESS)
-		game->ply->l_r = -1, printf("left => %d\n", game->ply->l_r);
+		game->ply->l_r = -1;
 	else if (key_data.key == MLX_KEY_D && key_data.action == MLX_PRESS)
-		game->ply->l_r = 1, printf("right => %d\n", game->ply->l_r);
+		game->ply->l_r = 1;
 	else if (key_data.key == MLX_KEY_S && key_data.action == MLX_PRESS)
-		game->ply->u_d = -1, printf("down => %d\n", game->ply->u_d);
+		game->ply->u_d = -1;
 	else if (key_data.key == MLX_KEY_W && key_data.action == MLX_PRESS)
-		game->ply->u_d = 1, printf("up => %d\n", game->ply->u_d);
+		game->ply->u_d = 1;
 	else if (key_data.key == MLX_KEY_LEFT && key_data.action == MLX_PRESS)
-		game->ply->rot = -1, printf("rotate left => %d\n", game->ply->rot);
+		game->ply->rot = -1;
 	else if (key_data.key == MLX_KEY_RIGHT && key_data.action == MLX_PRESS)
-		game->ply->rot = 1, printf("rotate right => %d\n", game->ply->rot);
+		game->ply->rot = 1;
 	ft_reles(key_data, game);
 
 }
@@ -84,10 +86,10 @@ int	main(int argc, char **argv)
 
 	pars_data = parsing(argc, argv);
 	if (!pars_data)
-		return (1);
+		return (ft_clean(NULL, "Parsing failed"), 1);
 	game = init_game(pars_data);
 	if (!game)
-		return (ft_error("Game initialization failed"));
+		return (ft_clean(NULL, "Game initialization failed"), 1);
 	mlx_key_hook(game->mlx, key_hook, game);
 	mlx_loop_hook(game->mlx, game_loop, game);
 	mlx_loop(game->mlx);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:34:33 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/12 05:00:26 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/13 05:10:50 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,8 @@ void	draw_3d(t_game *game, t_ray *ray, int index)
 	// }
 }
 
-void	draw_background(t_game *game)
-{
-	draw_rect(game, 0, 0, WIND_WID, WIND_HEI / 2, game->dt->c_clr);
-	draw_rect(game, 0, WIND_HEI / 2, WIND_WID, WIND_HEI / 2, game->dt->f_clr);
-}
-
 void	draw_map(t_game *game)
 {
-	// draw_background(game);
 	ray_cast(game);
 	draw_2d(game);
 	drwa_plyr(game);
