@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/12 04:16:32 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/13 01:01:11 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
+# include <limits.h>
 
 # define WIND_WID 1920
 # define WIND_HEI 1080
@@ -179,6 +180,8 @@ void	put_pixel(mlx_image_t *img, int x, int y, int color);
 void	draw_circle(mlx_image_t *mlx, int x, int y, long color);
 void	draw_line(mlx_image_t *img, int x1, int y1, int x2, int y2, uint32_t color);
 void	draw_rect(t_game *game, int x, int y, int w, int h, int color);
+void	ft_clean(t_game *game, char *msg);
+void	*ft_malloc(ssize_t size, int flag);
 // textures
 void ray_3d(t_game *game, int index, t_ray *ray, double wall_height);
 #endif

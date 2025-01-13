@@ -6,17 +6,18 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:07:05 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/09 23:15:56 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 01:01:36 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../Includes/cube.h"
 
-void	ft_clean(t_game *game)
+void	ft_clean(t_game *game, char *msg)
 {
-	(void)game;
-	mlx_delete_image(game->mlx, game->img);
-	mlx_terminate(game->mlx);
+	if (msg)
+		printf("%s\n", msg);
+	
+	ft_malloc(0, 1);
 	exit(0);
 }
 
@@ -42,10 +43,7 @@ void	key_hook(mlx_key_data_t key_data, void *param)
 
 	game = (t_game *)param;
 	if (key_data.key == MLX_KEY_ESCAPE)
-	{
-		printf("Game over\n");
-		ft_clean(game);
-	}
+		ft_clean(game, "Game over\n");
 	else if (key_data.key == MLX_KEY_A && key_data.action == MLX_PRESS)
 		game->ply->l_r = -1, printf("left => %d\n", game->ply->l_r);
 	else if (key_data.key == MLX_KEY_D && key_data.action == MLX_PRESS)
@@ -76,6 +74,6 @@ int	main(int argc, char **argv)
 	mlx_key_hook(game->mlx, key_hook, game);
 	mlx_loop_hook(game->mlx, game_loop, game);
 	mlx_loop(game->mlx);
-	ft_clean(game);
+	ft_clean(game, NULL);
 	return (0);
 }
