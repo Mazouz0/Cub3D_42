@@ -6,7 +6,7 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:10:24 by alamini           #+#    #+#             */
-/*   Updated: 2024/12/24 18:24:40 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/13 02:19:15 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int row_length(char *line)
 	return (i);
 }
 
-void fill_map_info(char *line, t_gdata *game)
+void	fill_map_info(char *line, t_gdata *game)
 {
-	int length;
+	int	length;
 
 	length = row_length(line);
 	if (length > game->map.max_column)
@@ -65,17 +65,17 @@ void fill_map_info(char *line, t_gdata *game)
 }
 
 
-int map_parse(int fd, t_gdata *game)
+int	map_parse(int fd, t_gdata *game)
 {
-	char *line;
-	int count;
+	char	*line;
+	int		count;
 
 	count = 0;
-	line = get_next_line(fd);
+	line = get_line(get_next_line(fd));
 	while (ex_strcmp(line, "\n") == 0)
 	{
 		game->map.start++;
-		line = get_next_line(fd);
+		line = get_line(get_next_line(fd));
 	}
 	while (line)
 	{
@@ -83,7 +83,7 @@ int map_parse(int fd, t_gdata *game)
 			return (1);
 		else
 			fill_map_info(line, game);
-		line = get_next_line(fd);
+		line = get_line(get_next_line(fd));
 	}
 	if (count != 1)
 		return (1);

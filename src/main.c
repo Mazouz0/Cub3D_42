@@ -6,11 +6,11 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:07:05 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 02:08:08 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 04:32:11 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../Includes/cube.h"
+#include "../Includes/cube.h"
 
 void	ft_clean(t_game *game, char *msg)
 {
@@ -74,7 +74,7 @@ void	key_hook(mlx_key_data_t key_data, void *param)
 	else if (key_data.key == MLX_KEY_RIGHT && key_data.action == MLX_PRESS)
 		game->ply->rot = 1, printf("rotate right => %d\n", game->ply->rot);
 	ft_reles(key_data, game);
-		
+
 }
 
 int	main(int argc, char **argv)

@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   special_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:57:37 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/01 05:51:23 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 01:29:42 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/cube.h"
 
-int get_rgba(int r, int g, int b, int a)
+int	get_rgba(int r, int g, int b, int a)
 {
-    return (r << 24 | g << 16 | b << 8 | a);
+	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-int ft_error(char *errmsg)
+int	ft_error(char *errmsg)
 {
 	write(2, "Error\n", 6);
 	write(2, errmsg, gnl_strlen(errmsg));
@@ -25,21 +25,21 @@ int ft_error(char *errmsg)
 	return (1);
 }
 
-int count_elements(char **dbl_arr)
+int	count_elements(char **dbl_arr)
 {
-	int i;
+	int	i;
 
 	if (!dbl_arr)
-		return (0);	
+		return (0);
 	i = 0;
 	while (dbl_arr[i])
 		i++;
 	return (i);
 }
 
-int in_set(char *set, char c)
+int	in_set(char *set, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (set[i])

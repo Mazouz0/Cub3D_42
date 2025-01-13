@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 01:01:11 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 02:04:02 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,45 +31,44 @@
 # define MAP_SCALE 1
 // # define WALL_WIDTH 1
 
-
 typedef struct s_cordinates
 {
-    int x;
-    int y;
+	int x;
+	int y;
 } t_cordinates;
 
 typedef struct s_elements
 {
-    int map;
-    int no;
-    int so;
-    int we;
-    int ea;
-    int f;
-    int c;
-    int total;
+	int map;
+	int no;
+	int so;
+	int we;
+	int ea;
+	int f;
+	int c;
+	int total;
 }	t_elements;
 
 typedef struct s_map
 {
-    char **the_map;
-    int max_column;
-    int max_row;
-    int start;
-    t_cordinates player;
-    int     direction;
+	char **the_map;
+	int max_column;
+	int max_row;
+	int start;
+	t_cordinates player;
+	int     direction;
 }   t_map;
 
 typedef struct s_gdata
 {
-    t_map  map;
-    char *north;
-    char *south;
-    char *west;
-    char *east;
-    int floor;
-    int ceiling;
-    char *file;
+	t_map  map;
+	char *north;
+	char *south;
+	char *west;
+	char *east;
+	int floor;
+	int ceiling;
+	char *file;
 }   t_gdata;
 
 //exec start :
@@ -84,27 +83,27 @@ typedef struct s_texture
 
 typedef struct s_player
 {
-    int		p_x;
-    int		p_y;
-    double	angle_dir;
-    double	fov_rd;
-    int		rot;
-    int		l_r;
-    int		u_d;
-    int		m_x;
-    int		m_y;
+	int		p_x;
+	int		p_y;
+	double	angle_dir;
+	double	fov_rd;
+	int		rot;
+	int		l_r;
+	int		u_d;
+	int		m_x;
+	int		m_y;
 }	t_player;
 
 typedef struct s_ray
 {
-    int		index;
-    double	r_angle;
-    double	horz_x;
-    double	horz_y;
-    double	vert_x;
-    double	vert_y;
-    double	distance;
-    int		flag;
+	int		index;
+	double	r_angle;
+	double	horz_x;
+	double	horz_y;
+	double	vert_x;
+	double	vert_y;
+	double	distance;
+	int		flag;
 }	t_ray;
 
 typedef struct s_data
@@ -127,7 +126,6 @@ typedef struct s_game
 	int			rays_dist[WIND_WID];
 }	t_game;
 
-
 // libft utils
 char	*ex_strjoin(char	*s1, char	*s2);
 char	**ft_split(char const *s, char c);
@@ -137,7 +135,7 @@ char	*ex_strdup(const char *s1);
 int     ft_isdigit(int c);
 int     is_number(char *number);
 int	    ft_atoi(const char *str);
-
+char	*my_strdup(const char *s1);
 
 // special utils
 int     get_rgba(int r, int g, int b, int a);
@@ -149,13 +147,13 @@ int     ft_error(char *errmsg);
 // Game phases
 t_gdata	*parsing(int argc, char **argv);
 
-
 // parsing utils
 // --> textures and colors
 int     textures_colors_parse(int fd, t_gdata *game);
 void    set_color(char *identifier, int arr[3], t_gdata *game);
 void    set_texture(char *identifier, char *path, t_gdata *game);
 int     validate_texture_color(char *line, t_elements *elements, t_gdata *game);
+int		fill_rgb(t_gdata *game, char **dbl_ptr, char *identifier);
 // --> map
 int map_parse(int fd, t_gdata *game);
 int get_map(int fd, t_gdata *game);
@@ -178,7 +176,8 @@ int		unit_circle(float angle, char c);
 void	draw_3d(t_game *game, t_ray *ray, int index);
 void	put_pixel(mlx_image_t *img, int x, int y, int color);
 void	draw_circle(mlx_image_t *mlx, int x, int y, long color);
-void	draw_line(mlx_image_t *img, int x1, int y1, int x2, int y2, uint32_t color);
+void	draw_line(mlx_image_t *img, int x1, int y1, int x2, int y2,
+			uint32_t color);
 void	draw_rect(t_game *game, int x, int y, int w, int h, int color);
 void	ft_clean(t_game *game, char *msg);
 void	*ft_malloc(ssize_t size, int flag);

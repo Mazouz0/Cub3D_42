@@ -6,22 +6,11 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:46:14 by alamini           #+#    #+#             */
-/*   Updated: 2024/12/04 23:50:24 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/13 01:28:14 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/cube.h"
-
-static char	**malloc_error(char **tab)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (tab[i])
-		free(tab[i++]);
-	free(tab);
-	return (NULL);
-}
 
 static int	word_count(const char *str, char c)
 {
@@ -59,9 +48,9 @@ static char	*get_word(const char *s1, int *index, char c)
 		word_len++;
 		i++;
 	}
-	copy = malloc(sizeof(char) * (word_len + 1));
+	copy = ft_malloc(sizeof(char) * (word_len + 1), 0);
 	if (!copy)
-		return (NULL);
+		return (ft_clean(NULL, "Allocation Error"), NULL);
 	i = 0;
 	while (s1[*index] && s1[*index] != c)
 		copy[i++] = s1[(*index)++];
@@ -81,14 +70,14 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	wc = word_count(s, c);
-	arr = malloc(sizeof(char *) * (wc + 1));
+	arr = ft_malloc(sizeof(char *) * (wc + 1), 0);
 	if (!arr)
-		return (NULL);
+		return (ft_clean(NULL, "Allocation Error"), NULL);
 	while (i < wc)
 	{
 		arr[i] = get_word(s, &index, c);
 		if (!arr[i])
-			return (malloc_error(arr));
+			return (ft_clean(NULL, "Allocation Error"), NULL);
 		i++;
 	}
 	arr[i] = 0;
