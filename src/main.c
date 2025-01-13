@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:07:05 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 05:07:21 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 05:09:23 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,17 @@ void	key_hook(mlx_key_data_t key_data, void *param)
 	if (key_data.key == MLX_KEY_ESCAPE)
 		ft_clean(game, "Game over\n");
 	else if (key_data.key == MLX_KEY_A && key_data.action == MLX_PRESS)
-		game->ply->l_r = -1, printf("left => %d\n", game->ply->l_r);
+		game->ply->l_r = -1;
 	else if (key_data.key == MLX_KEY_D && key_data.action == MLX_PRESS)
-		game->ply->l_r = 1, printf("right => %d\n", game->ply->l_r);
+		game->ply->l_r = 1;
 	else if (key_data.key == MLX_KEY_S && key_data.action == MLX_PRESS)
-		game->ply->u_d = -1, printf("down => %d\n", game->ply->u_d);
+		game->ply->u_d = -1;
 	else if (key_data.key == MLX_KEY_W && key_data.action == MLX_PRESS)
-		game->ply->u_d = 1, printf("up => %d\n", game->ply->u_d);
+		game->ply->u_d = 1;
 	else if (key_data.key == MLX_KEY_LEFT && key_data.action == MLX_PRESS)
-		game->ply->rot = -1, printf("rotate left => %d\n", game->ply->rot);
+		game->ply->rot = -1;
 	else if (key_data.key == MLX_KEY_RIGHT && key_data.action == MLX_PRESS)
-		game->ply->rot = 1, printf("rotate right => %d\n", game->ply->rot);
+		game->ply->rot = 1;
 	ft_reles(key_data, game);
 
 }
