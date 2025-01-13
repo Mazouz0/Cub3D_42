@@ -6,7 +6,7 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 23:01:04 by alamini           #+#    #+#             */
-/*   Updated: 2024/12/24 18:27:19 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/13 02:07:04 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,24 @@ int is_number(char *number)
 		i++;
 	}
 	return (0);
+}
+
+char	*my_strdup(const char *s1) // garbage collector strdup
+{
+	char	*ptr;
+	int		size;
+	int		i;
+
+	size = ex_strlen(s1);
+	ptr = ft_malloc((sizeof(char) * (size + 1)), 0);
+	if (!ptr)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		ptr[i] = s1[i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }

@@ -4,6 +4,7 @@
 		"sstream": "c",
 		"cube.h": "c",
 		"mlx.h": "c",
-		"complex": "c"
+		"complex": "c",
+		"__locale": "c"
 	}
 }

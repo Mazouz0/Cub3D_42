@@ -6,13 +6,13 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:39:49 by alamini           #+#    #+#             */
-/*   Updated: 2024/12/24 18:24:56 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/13 02:20:42 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../Includes/cube.h"
+#include "../../Includes/cube.h"
 
-void set_texture(char *identifier, char *path, t_gdata *game)
+void	set_texture(char *identifier, char *path, t_gdata *game)
 {
 	if (!ex_strcmp(identifier, "NO"))
 		game->north = path;
@@ -24,7 +24,7 @@ void set_texture(char *identifier, char *path, t_gdata *game)
 		game->east = path;
 }
 
-void set_color(char *identifier, int arr[3], t_gdata *game)
+void	set_color(char *identifier, int arr[3], t_gdata *game)
 {
 	if (!ex_strcmp(identifier, "F"))
 		game->floor = get_rgba(arr[0], arr[1], arr[2], 0xAA);
@@ -32,8 +32,7 @@ void set_color(char *identifier, int arr[3], t_gdata *game)
 		game->ceiling = get_rgba(arr[0], arr[1], arr[2], 0xAA);
 }
 
-
-void init_elements(t_elements *elements)
+void	init_elements(t_elements *elements)
 {
 	elements->map = 0;
 	elements->no = 0;
@@ -65,23 +64,21 @@ int	check_elements_count(t_elements elements)
 
 int	textures_colors_parse(int fd, t_gdata *game)
 {
-	
 	t_elements	elem_parse;
-	char 		*line;
+	char		*line;
 
 	init_elements(&elem_parse);
-	line = get_next_line(fd);
+	line = get_line(get_next_line(fd));
 	while (line)
 	{
 		game->map.start++;
 		if (validate_texture_color(line, &elem_parse, game))
-			return (free(line), ft_error("Invalid map content!!"), -1);
-		free(line);
+			return (ft_clean(NULL, "Invalid map content!!"), -1);
 		if (check_elements_count(elem_parse) == 1)
-			return (ft_error("Invalid map content!!"), -1);
+			return (ft_clean(NULL, "Invalid map content!!"), -1);
 		else if (check_elements_count(elem_parse) == 2)
 			break ;
-		line = get_next_line(fd);
+		line = get_line(get_next_line(fd));
 	}
 	return (fd);
 }

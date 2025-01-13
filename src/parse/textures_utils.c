@@ -1,43 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_2.c                                          :+:      :+:    :+:   */
+/*   textures_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 00:44:20 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/13 01:28:37 by alamini          ###   ########.fr       */
+/*   Created: 2025/01/13 01:53:41 by alamini           #+#    #+#             */
+/*   Updated: 2025/01/13 02:18:21 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/cube.h"
 
-void	*free_all(void **ptr_list, int *i)
+int	fill_rgb(t_gdata *game, char **dbl_ptr, char *identifier)
 {
-	int	j;
+	int		rgb[3];
 
-	j = 0;
-	while (ptr_list[j])
+	rgb[0] = ft_atoi(dbl_ptr[0]);
+	rgb[1] = ft_atoi(dbl_ptr[1]);
+	rgb[2] = ft_atoi(dbl_ptr[2]);
+	if (rgb[0] < 0 || rgb[0] > 255 || rgb[1] < 0 || rgb[1] > 255
+		|| rgb[2] < 0 || rgb[2] > 255)
 	{
-		free(ptr_list[j]);
-		ptr_list[j] = NULL;
-		j++;
+		return (1);
 	}
-	*i = 0;
-	return (NULL);
+	set_color(identifier, rgb, game);
+	return (0);
 }
 
-void	*ft_malloc(ssize_t size, int flag)
+char	*get_line(char *tmp)
 {
-	static void	*ptr_list[INT_MAX];
-	static int	i;
-	void		*ptr;
+	char	*line;
 
-	if (flag)
-		return (free_all(ptr_list, &i));
-	ptr = malloc(size);
-	if (!ptr)
-		return (NULL);
-	ptr_list[i++] = ptr;
-	return (ptr);		
+	line = my_strdup(tmp);
+	free(tmp);
+	retrun (line);
 }

@@ -1,2 +1,4 @@
 adding loade_png test in parsing
 maps only valide if the player is serounded by the 1 and it's incorect!!! / fixed untill you saw it
+
+check all ft_malloc so we dont make mistakes

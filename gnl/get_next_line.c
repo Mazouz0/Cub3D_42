@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:49:00 by alamini           #+#    #+#             */
-/*   Updated: 2024/12/23 21:09:14 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 02:06:11 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,3 @@ char	*get_next_line(int fd)
 	}
 	return (free(buffer), line);
 }
-//;;;;

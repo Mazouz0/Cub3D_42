@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:07:05 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 01:01:36 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 04:26:15 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../Includes/cube.h"
+#include "../Includes/cube.h"
 
 void	ft_clean(t_game *game, char *msg)
 {
