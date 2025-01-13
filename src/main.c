@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:07:05 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 01:01:36 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 02:01:45 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,24 @@ void	ft_clean(t_game *game, char *msg)
 {
 	if (msg)
 		printf("%s\n", msg);
-	
+	if (game)
+	{
+		if (game->mlx)
+			mlx_terminate(game->mlx);
+		if (game->img)
+			mlx_delete_image(game->mlx, game->img);
+		if (game->dt && game->dt->txtr)
+		{
+			if (game->dt->txtr->no)
+				mlx_delete_texture(game->dt->txtr->no);
+			if (game->dt->txtr->ea)
+				mlx_delete_texture(game->dt->txtr->ea);
+			if (game->dt->txtr->so)
+				mlx_delete_texture(game->dt->txtr->so);
+			if (game->dt->txtr->we)
+				mlx_delete_texture(game->dt->txtr->we);
+		}
+	}
 	ft_malloc(0, 1);
 	exit(0);
 }
