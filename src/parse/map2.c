@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:19:11 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/07 21:00:27 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/13 04:59:50 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../Includes/cube.h"
+#include "../../Includes/cube.h"
 
-char *get_row(char *line, t_gdata *game)
+char	*get_row(char *line, t_gdata *game)
 {
 	char *row;
 	int		i;
@@ -35,26 +35,26 @@ char *get_row(char *line, t_gdata *game)
 	return (row);
 }
 
-int get_map(int fd, t_gdata *game)
+int	get_map(int fd, t_gdata *game)
 {
-	int	i;
-	char *line;
-	char **grid;
-	
+	int		i;
+	char	*line;
+	char	**grid;
+
 	i = -1;
-	grid = malloc((sizeof(char *) * game->map.max_row) + 1);
-	if (!grid || fd == -1)
-		return (ft_error("Allocation Error !!"), 1);
 	close(fd);
+	grid = ft_malloc((sizeof(char *) * game->map.max_row) + 1, 0);
 	fd = open(game->file, O_RDONLY);
-	while (++i < game->map.start) // skip untill map
-		get_next_line(fd);
+	if (!grid || fd == -1)
+		return (ft_clean(NULL, "Resources Error"), 1);
+	while (++i < game->map.start)
+		free(get_next_line(fd));
 	i = 0;
-	line = get_next_line(fd);
+	line = get_line(get_next_line(fd));
 	while (line && i < game->map.max_row)
 	{
 		grid[i] = get_row(line, game);
-		line = get_next_line(fd);
+		line = get_line(get_next_line(fd));
 		i++;
 	}
 	grid[i] = NULL;
@@ -65,9 +65,8 @@ int get_map(int fd, t_gdata *game)
 
 int	is_sourounded_by_void(t_map map, int y, int x)
 {
-	char **grid;
+	char	**grid;
 
-	
 	grid = map.the_map;
 	if (!x || !y || x == map.max_column - 1 || y == map.max_row - 1)
 		return (0);
@@ -79,21 +78,13 @@ int	is_sourounded_by_void(t_map map, int y, int x)
 		return (1);
 	else if (in_set(" ", grid[y][x + 1]))
 		return (1);
-	// if (!in_set("01", grid[y - 1][x]))
-	// 	return (1);
-	// else if (!in_set("01", grid[y + 1][x]))
-	// 	return (1);
-	// else if (!in_set("01", grid[y][x - 1]))
-	// 	return (1);
-	// else if (!in_set("01", grid[y][x + 1]))
-	// 	return (1);
 	return (0);
 }
 
-int validate_map(t_map map)
+int	validate_map(t_map map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -106,8 +97,7 @@ int validate_map(t_map map)
 			{
 				if (is_sourounded_by_void(map, i, j))
 				{
-					ft_error("Invalid Map In");
-					return (printf("X= %d, Y= %d\n", j, i), 1);
+					return (ft_clean(NULL, "Invalid Map In"), 1);
 				}
 			}
 			j++;
@@ -117,26 +107,29 @@ int validate_map(t_map map)
 	return (0);
 }
 
-int map_borders(t_map map)
+int	map_borders(t_map map)
 {
-	int i;
-	char **grid;
+	int		i;
+	char	**grid;
+	int		max_row;
+	int		max_column;
 
 	grid = map.the_map;
+	max_row = map.max_row;
+	max_column = map.max_column;
 	i = 0;
 	while (i < map.max_column)
 	{
-		if (!in_set("1 ", grid[0][i]) || !in_set("1 ", grid[map.max_row - 1][i]))
+		if (!in_set("1 ", grid[0][i]) || !in_set("1 ", grid[max_row - 1][i]))
 			return (ft_error("Looks like you forgot to build the walls ^_^"));
 		i++;
 	}
 	i = 0;
 	while (i < map.max_row)
 	{
-		if (!in_set("1 ", grid[i][0]) || !in_set("1 ", grid[i][map.max_column - 1]))
+		if (!in_set("1 ", grid[i][0]) || !in_set("1 ", grid[i][max_column - 1]))
 			return (ft_error("Looks like you forgot to build the walls ^_^"));
-		i++;	
+		i++;
 	}
 	return (0);
-	
 }

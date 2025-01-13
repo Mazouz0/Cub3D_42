@@ -6,7 +6,7 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 01:53:41 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 02:18:21 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/13 04:29:09 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ char	*get_line(char *tmp)
 
 	line = my_strdup(tmp);
 	free(tmp);
-	retrun (line);
+	return (line);
 }

@@ -6,17 +6,18 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:10:24 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 02:19:15 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/13 05:01:31 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../Includes/cube.h"
+#include "../../Includes/cube.h"
 
-int is_valid(char *line, int *count)
+int	is_valid(char *line, int *count)
 {
-	int i;
-	char possible_chars[] = "\n01 NSWE";
+	int		i;
+	char	*possible_chars;
 
+	possible_chars = "\n01 NSWE";
 	i = 0;
 	while (line[i] && line[i] == ' ')
 		i ++;
@@ -33,7 +34,7 @@ int is_valid(char *line, int *count)
 	return (0);
 }
 
-int parse_line(char *line, int *count)
+int	parse_line(char *line, int *count)
 {
 	if (!ex_strcmp(line, "\n"))
 		return (1);
@@ -41,10 +42,11 @@ int parse_line(char *line, int *count)
 		return (1);
 	return (0);
 }
-int row_length(char *line)
+
+int	row_length(char *line)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (line[i] && line[i] != '\n')
 		i++;

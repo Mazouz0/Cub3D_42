@@ -6,7 +6,7 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:16:39 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 02:13:00 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/13 05:00:59 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ int	map_direction(char c)
 
 void	get_player_info(t_map *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;

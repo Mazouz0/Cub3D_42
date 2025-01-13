@@ -6,7 +6,7 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 23:01:04 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 02:07:04 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/13 04:43:20 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ char	*my_strdup(const char *s1) // garbage collector strdup
 	int		size;
 	int		i;
 
+	if (!s1)
+		return (NULL);
 	size = ex_strlen(s1);
 	ptr = ft_malloc((sizeof(char) * (size + 1)), 0);
 	if (!ptr)

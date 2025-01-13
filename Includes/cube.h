@@ -6,7 +6,7 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 02:04:02 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/13 04:28:18 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ void    set_color(char *identifier, int arr[3], t_gdata *game);
 void    set_texture(char *identifier, char *path, t_gdata *game);
 int     validate_texture_color(char *line, t_elements *elements, t_gdata *game);
 int		fill_rgb(t_gdata *game, char **dbl_ptr, char *identifier);
+char	*get_line(char *tmp);
 // --> map
 int map_parse(int fd, t_gdata *game);
 int get_map(int fd, t_gdata *game);
