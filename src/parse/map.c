@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:10:24 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 05:01:31 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/14 09:44:48 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	fill_map_info(char *line, t_gdata *game)
 		game->map.max_column = length;
 	game->map.max_row++;
 }
-
 
 int	map_parse(int fd, t_gdata *game)
 {

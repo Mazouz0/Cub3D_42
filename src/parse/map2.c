@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:19:11 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 04:59:50 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/14 09:29:27 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*get_row(char *line, t_gdata *game)
 {
-	char *row;
+	char	*row;
 	int		i;
 
 	i = 0;
