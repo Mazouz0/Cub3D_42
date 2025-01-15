@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/15 06:50:52 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/15 08:21:00 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ typedef struct s_game
 	t_data		*dt;
 	t_player	*ply;
 	t_ray		*ray;
-	int			rays_dist[WIND_WID];
 }	t_game;
 
 typedef struct s_utils

@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 02:58:51 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/13 05:00:50 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/15 08:21:31 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,6 @@ t_player	*init_player(t_gdata *pars_data)
 	return (player);
 }
 
-void	set_dist(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (i < WIND_WID)
-	{
-		game->rays_dist[i] = TIL_SIZE;
-		i++;
-	}
-}
-
 t_game	*init_game(t_gdata *pars_data)
 {
 	t_game	*game;
@@ -84,7 +72,6 @@ t_game	*init_game(t_gdata *pars_data)
 	game->ray = (t_ray *)ft_calloc(sizeof(t_ray), 1);
 	if (!game->dt || !game->ply || !game->ray)
 		return (ft_malloc(0, 1));
-	set_dist(game);
 	game->mlx = mlx_init(WIND_WID, WIND_HEI, "Cub3D", false);
 	if (!game->mlx)
 		return (ft_clean(game, "mlx_init failed"), NULL);

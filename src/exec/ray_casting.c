@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 21:29:20 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/13 07:19:17 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/15 08:21:43 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,6 @@ void	ray_cast(t_game *game)
 			game->ray->distance = h_inter;
 			game->ray->flag = 1;
 		}
-		game->rays_dist[ray] = game->ray->distance;
 		draw_3d(game, game->ray, ray);
 		ray ++;
 		game->ray->r_angle += game->ply->fov_rd / WIND_WID;
