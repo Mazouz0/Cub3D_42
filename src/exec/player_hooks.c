@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:59:40 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/14 10:17:50 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/15 08:19:19 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	norm_pos_x(char **map, int map_x, int map_y, int new_x)
 
 int	norm_pos_y(char **map, int map_x, int map_y, int new_y)
 {
+	if (!map || !map[map_y] || !map[map_y + 1] || !map[map_y - 1])
+		return (new_y);
 	if (map[map_y + 1][map_x] == '1'
 		&& (new_y % TIL_SIZE) > (TIL_SIZE - WALL_BUFFER))
 		return ((map_y * TIL_SIZE) + (TIL_SIZE - WALL_BUFFER));
