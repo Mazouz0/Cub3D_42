@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 07:07:40 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/15 06:50:52 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define ROT_SPEED 0.05
 # define MAP_SCALE 1
 # define WALL_BUFFER 2
+# define PLAYER_SIZE 5
 
 typedef struct s_cordinates
 {
@@ -126,6 +127,22 @@ typedef struct s_game
 	int			rays_dist[WIND_WID];
 }	t_game;
 
+typedef struct s_utils
+{
+	double	top_x;
+	double	top_y;
+	double	left_x;
+	double	left_y;
+	double	right_x;
+	double	right_y;
+	int		dx;
+	int		dy;
+	int		sx;
+	int		sy;
+	int		err;
+	int		e2;
+}	t_utils;
+
 // libft utils
 char	*ex_strjoin(char	*s1, char	*s2);
 char	**ft_split(char const *s, char c);
@@ -177,7 +194,7 @@ int		unit_circle(float angle, char c);
 void	draw_3d(t_game *game, t_ray *ray, int index);
 void	put_pixel(mlx_image_t *img, int x, int y, int color);
 void	draw_circle(mlx_image_t *mlx, int x, int y, long color);
-void	draw_line(mlx_image_t *img, int x1, int y1, int x2, int y2,
+void	draw_t_line(mlx_image_t *img, t_cordinates c1, t_cordinates c2,
 			uint32_t color);
 void	draw_rect(t_game *game, int x, int y, int color);
 void	ft_clean(t_game *game, char *msg);

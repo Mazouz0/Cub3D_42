@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:34:33 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/13 07:11:26 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/15 06:52:27 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,16 @@ void	drwa_plyr(t_game *game)
 
 	p_x = game->ply->p_x;
 	p_y = game->ply->p_y;
-	angle = game->ply->angle_dir;
+	angle = game->ply->angle_dir - game->ply->fov_rd / 2;
 	i = 0;
 	draw_circle(game->img, p_x, p_y, 0xFF0000BB);
-	draw_line(game->img, p_x, p_y,
-		p_x + cos(angle) * TIL_SIZE,
-		p_y + sin(angle) * TIL_SIZE,
-		0xFF0000BB);
-	angle -= game->ply->fov_rd / 2;
-	while (i < WIND_WID)
+	while (i < 100)
 	{
-		draw_line(game->img, p_x, p_y,
-			p_x + cos(angle) * game->rays_dist[i],
-			p_y + sin(angle) * game->rays_dist[i],
-			0xFF0000BB);
-		angle += game->ply->fov_rd / WIND_WID;
-		i++;
+		draw_t_line(game->img, (t_cordinates){p_x, p_y},
+			(t_cordinates){p_x + cos(angle) * TIL_SIZE,
+			p_y + sin(angle) * TIL_SIZE}, 0xFF0000BB);
+		angle += game->ply->fov_rd / 100;
+		i ++;
 	}
 }
 

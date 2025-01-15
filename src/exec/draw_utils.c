@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 01:53:18 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/13 07:22:44 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/15 08:07:14 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ void	put_pixel(mlx_image_t *img, int x, int y, int color)
 		return ;
 	if (y < 0 || y >= WIND_HEI)
 		return ;
-	mlx_put_pixel(img , x, y, color);
+	mlx_put_pixel(img, x, y, color);
 }
 
 void	draw_circle(mlx_image_t *mlx, int x, int y, long color)
 {
-	int i;
-	int j;
-	int r;
-	int r2;
+	int	i;
+	int	j;
+	int	r;
+	int	r2;
 
 	r = 3;
 	r2 = r * r;
@@ -44,34 +44,38 @@ void	draw_circle(mlx_image_t *mlx, int x, int y, long color)
 	}
 }
 
-void	draw_line(mlx_image_t *img, int x1, int y1, int x2, int y2, uint32_t color)
+int	get_s(int c1, int c2)
 {
-	int dx;
-	int dy;
-	int sx;
-	int sy;
-	int err;
-	
-	dx = abs(x2 - x1);
-	dy = abs(y2 - y1);
-	sx = (x1 < x2) ? 1 : -1;
-	sy = (y1 < y2) ? 1 : -1;
-	err = dx - dy;
+	if (c1 < c2)
+		return (1);
+	return (-1);
+}
+
+void	draw_t_line(mlx_image_t *img, t_cordinates c1
+	, t_cordinates c2, uint32_t color)
+{
+	t_utils	u;
+
+	u.dx = abs(c2.x - c1.x);
+	u.dy = abs(c2.y - c1.y);
+	u.sx = get_s(c1.x, c2.x);
+	u.sy = get_s(c1.y, c2.y);
+	u.err = u.dx - u.dy;
 	while (1)
 	{
-		put_pixel(img, x1, y1, color); 
-		if (x1 == x2 && y1 == y2)
-			break;
-		int e2 = 2 * err;
-		if (e2 > -dy)
+		put_pixel(img, c1.x, c1.y, color);
+		if (c1.x == c2.x && c1.y == c2.y)
+			break ;
+		u.e2 = 2 * u.err;
+		if (u.e2 > -u.dy)
 		{
-		    err -= dy;
-		    x1 += sx;
+			u.err -= u.dy;
+			c1.x += u.sx;
 		}
-		if (e2 < dx)
+		if (u.e2 < u.dx)
 		{
-		    err += dx;
-		    y1 += sy;
+			u.err += u.dx;
+			c1.y += u.sy;
 		}
 	}
 }
