@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:07:05 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/16 17:58:25 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/16 20:22:04 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	main(int argc, char **argv)
 {
 	t_gdata	*pars_data;
 	t_game	*game;
-
+ 
 	pars_data = parsing(argc, argv);
 	if (!pars_data)
 		return (ft_clean(NULL, "Parsing failed"), 1);

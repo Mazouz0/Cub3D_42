@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:34:33 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/16 18:26:37 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/16 20:11:12 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,4 @@ void	draw_map(t_game *game)
 	ray_cast(game);
 	draw_2d(game, game->ply->p_x / TIL_SIZE, game->ply->p_y / TIL_SIZE);
 	draw_animation(game);
-	
 }	
