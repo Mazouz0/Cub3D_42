@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:34:33 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/15 06:52:27 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:34:29 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	draw_2d(t_game *game)
 		while (map[i][j])
 		{
 			if (map[i][j] == '1')
-				draw_rect(game, j * TIL_SIZE, i * TIL_SIZE, 0x00FFBBBB);
+				draw_rect(game, j * TIL_SIZE, i * TIL_SIZE, 0xBBBBBB99);
 			else
 				draw_rect(game, j * TIL_SIZE, i * TIL_SIZE, 0xFFFFFFBB);
 			j ++;
