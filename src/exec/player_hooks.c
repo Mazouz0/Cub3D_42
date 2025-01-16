@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:59:40 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/15 08:19:19 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/16 14:27:57 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	player_hook(t_game *game, double move_x, double move_y)
 		move_x = -sin(game->ply->angle_dir) * MOV_SPEED;
 		move_y = cos(game->ply->angle_dir) * MOV_SPEED;
 	}
-	if (forward == -1)
+	else if (forward == -1)
 	{
 		move_x = sin(game->ply->angle_dir) * MOV_SPEED;
 		move_y = -cos(game->ply->angle_dir) * MOV_SPEED;
