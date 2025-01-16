@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 00:44:20 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/13 07:16:21 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/16 17:56:23 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,42 @@ void	*ft_malloc(ssize_t size, int flag)
 		return (NULL);
 	ptr_list[i++] = ptr;
 	return (ptr);
+}
+
+int	ft_numlen(int n, int base)
+{
+	int	count;
+
+	count = 0;
+	if (n <= 0)
+		++count;
+	while (n && ++count)
+		n /= base;
+	return (count);
+}
+
+char	*ft_itoa(int n)
+{
+	int			len;
+	char		*ret;
+	const char	*digits = "0123456789";
+
+	len = ft_numlen(n, 10);
+	ret = ft_malloc(sizeof(char) * (len + 1), 0);
+	if (!ret)
+		return (0);
+	ret[len] = 0;
+	if (n == 0)
+		ret[0] = '0';
+	if (n < 0)
+		ret[0] = '-';
+	while (n)
+	{
+		if (n > 0)
+			ret[--len] = digits[n % 10];
+		else
+			ret[--len] = digits[n % 10 * -1];
+		n /= 10;
+	}
+	return (ret);
 }

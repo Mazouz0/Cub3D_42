@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 02:58:51 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/15 08:21:31 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/16 19:15:58 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,30 @@ t_player	*init_player(t_gdata *pars_data)
 	return (player);
 }
 
+char	**get_animation(void)
+{
+	char	**drag_anim;
+	int		i;
+	char	*name;
+
+	drag_anim = malloc(sizeof(char *) * 31);
+	if (!drag_anim)
+		return (NULL);
+	i = 0;
+	while (i < 30)
+	{
+		name = ex_strjoin("t_animation/drag_", ft_itoa(i + 1));
+		drag_anim[i] = ex_strjoin(name, ".png");
+		if (!drag_anim[i])
+			return (NULL);
+		i++;
+	}
+	drag_anim[i] = NULL;
+	return (drag_anim);
+}
+
+t_anim_dt	**init_anim
+
 t_game	*init_game(t_gdata *pars_data)
 {
 	t_game	*game;
@@ -69,6 +93,10 @@ t_game	*init_game(t_gdata *pars_data)
 		return (NULL);
 	game->dt = init_ex_data(pars_data);
 	game->ply = init_player(pars_data);
+	game->anim = init_anim(get_animation());
+	
+	if (!game->dt || !game->ply || !game->anim)
+		return (ft_malloc(0, 1));
 	game->ray = (t_ray *)ft_calloc(sizeof(t_ray), 1);
 	if (!game->dt || !game->ply || !game->ray)
 		return (ft_malloc(0, 1));
