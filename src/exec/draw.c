@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:34:33 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/17 13:14:20 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:49:53 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,18 @@ void	drwa_plyr(t_game *game)
 	}
 }
 
+int	get_til_color(char c)
+{
+	if (c == '1')
+		return (0xBBBBBB99);
+	else if (c == 'O')
+		return (0x00FF00BB);
+	else if (c == 'D')
+		return (0xFF0000BB);
+	else
+		return (0xFFFFFFBB);
+}
+
 void	draw_2d(t_game *game, int p_x, int p_y)
 {
 	int		i;
@@ -50,14 +62,8 @@ void	draw_2d(t_game *game, int p_x, int p_y)
 		while (++j <= p_y + 5)
 		{
 			if (i >= 0 && j >= 0 && i < game->dt->map_w && j < game->dt->map_h)
-			{
-				if (game->dt->map2d[j][i] == '1')
-					draw_rect(game, (i * TIL_SIZE) - o_x,
-						(j * TIL_SIZE) - o_y, 0xBBBBBB99);
-				else
-					draw_rect(game, (i * TIL_SIZE) - o_x,
-						(j * TIL_SIZE) - o_y, 0xFFFFFFBB);
-			}
+				draw_rect(game, (i * TIL_SIZE) - o_x, (j * TIL_SIZE) - o_y,
+					get_til_color(game->dt->map2d[j][i]));
 		}
 	}
 	drwa_plyr(game);

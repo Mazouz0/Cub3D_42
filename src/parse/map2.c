@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:19:11 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/14 09:29:27 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:11:45 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	validate_map(t_map map)
 		j = 0;
 		while (j < map.max_column)
 		{
-			if (in_set("NSEW0", map.the_map[i][j]))
+			if (in_set("NSEW0OD", map.the_map[i][j]))
 			{
 				if (is_sourounded_by_void(map, i, j))
 				{

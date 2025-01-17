@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/17 15:52:56 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:51:46 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,4 +212,6 @@ void	*ft_malloc(ssize_t size, int flag);
 void	ray_3d(t_game *game, int index, t_ray *ray, double wall_height);
 void	draw_animation(t_game *game);
 int		reverse_bytes(int c);
+void	put_to_image_gun(t_game *game, t_anim_dt *data);
+
 #endif

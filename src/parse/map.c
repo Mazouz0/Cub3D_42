@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:10:24 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/14 09:44:48 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:05:54 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_valid(char *line, int *count)
 	int		i;
 	char	*possible_chars;
 
-	possible_chars = "\n01 NSWE";
+	possible_chars = "\n0DO1 NSWE";
 	i = 0;
 	while (line[i] && line[i] == ' ')
 		i ++;
@@ -25,7 +25,7 @@ int	is_valid(char *line, int *count)
 		return (1);
 	while (line[i])
 	{
-		if (in_set(&possible_chars[4], line[i]))
+		if (in_set(&possible_chars[6], line[i]))
 			(*count)++;
 		if (!in_set(possible_chars, line[i]))
 			return (1);
