@@ -6,11 +6,41 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:59:35 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/17 13:15:49 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/17 17:14:26 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/cube.h"
+
+void	put_to_image_gun(t_game *game, t_anim_dt *data)
+{
+	uint32_t	x;
+	uint32_t	y;
+	uint32_t	color;
+	uint32_t	max_pixels;
+	uint32_t	current_pixel;
+
+	max_pixels = data->width * data->height;
+	y = 0;
+	while (y < data->height && y < game->img->height)
+	{
+		x = 0;
+		while (x < data->width && x < game->img->width)
+		{
+			current_pixel = y * data->width + x;
+			if (current_pixel < max_pixels)
+			{
+				color = data->pixels[y * data->width + x];
+				if (color != 0)
+					put_pixel(game->img, x + WIND_WID /2 - data->width / 2,
+						y + WIND_HEI - data->height, reverse_bytes(color));
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
 
 void	put_to_image_spiret(t_game *game, t_anim_dt *data)
 {
@@ -46,13 +76,37 @@ t_anim_dt	*init_anim(char *animation, mlx_texture_t **tex_ptr)
 	t_anim_dt		*anim;
 	mlx_texture_t	*texture;
 
-	anim = ft_malloc(sizeof(t_anim_dt *), 0);
-	if (!anim)
-		return (NULL);
 	texture = mlx_load_png(animation);
 	if (!texture)
 		return (NULL);
-	anim = ft_malloc(sizeof(t_anim_dt), 0);
+	anim = ft_malloc(sizeof(t_anim_dt *), 0);
+	if (!anim)
+		return (mlx_delete_texture(texture), NULL);
+	anim->height = texture->height;
+	anim->width = texture->width;
+	anim->pixels = (uint32_t *)texture->pixels;
+	*tex_ptr = texture;
+	return (anim);
+}
+char	*get_gun(int i)
+{
+	char	*gun;
+	char	*tmp;
+
+	tmp = ex_strjoin("t_animation/gun/", ft_itoa(i + 1));
+	gun = ex_strjoin(tmp, ".png");
+	return (gun);
+}
+
+t_anim_dt	*init_gun(int gun, mlx_texture_t **tex_ptr)
+{
+	t_anim_dt		*anim;
+	mlx_texture_t	*texture;
+
+	texture = mlx_load_png(get_gun(gun));
+	if (!texture)
+		return (NULL);
+	anim = ft_malloc(sizeof(t_anim_dt *), 0);
 	if (!anim)
 		return (mlx_delete_texture(texture), NULL);
 	anim->height = texture->height;
@@ -65,12 +119,21 @@ t_anim_dt	*init_anim(char *animation, mlx_texture_t **tex_ptr)
 void	draw_animation(t_game *game)
 {
 	static int		moon;
-	mlx_texture_t	*texture;
+	static int		gun;
+	mlx_texture_t	*moon_txr;
+	mlx_texture_t	*gun_txt;
 
-	texture = NULL;
+	moon_txr = NULL;
+	gun_txt = NULL;
 	if (moon == 100)
 		moon = 0;
-	put_to_image_spiret(game, init_anim(game->anime[moon ++], &texture));
-	if (texture)
-		mlx_delete_texture(texture);
+	if (gun == 15)
+		gun = 0, game->gun = 0;
+	put_to_image_spiret(game, init_anim(game->anime[moon ++], &moon_txr));
+	if (game->gun)
+		put_to_image_gun(game, init_gun(gun ++, &gun_txt));
+	if (moon_txr)
+		mlx_delete_texture(moon_txr);
+	if (gun_txt)
+		mlx_delete_texture(gun_txt);
 }
