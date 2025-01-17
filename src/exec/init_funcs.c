@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 02:58:51 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/16 21:26:10 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/17 13:12:49 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,21 @@ char	**get_animation(void)
 	int		i;
 	char	*name;
 
-	anime = malloc(sizeof(char *) * 251);
+	anime = malloc(sizeof(char *) * 101);
 	if (!anime)
 		return (NULL);
 	i = 0;
-	while (i < 250)
+	while (i < 100)
 	{
-		name = ex_strjoin("t_animation/", ft_itoa(i + 1));
+		name = ex_strjoin("t_animation/moon/", ft_itoa(i + 1));
 		anime[i] = ex_strjoin(name, ".png");
 		if (!anime[i])
 			return (NULL);
 		i++;
-		
 	}
 	anime[i] = NULL;
 	return (anime);
 }
-
 
 t_game	*init_game(t_gdata *pars_data)
 {
@@ -94,7 +92,6 @@ t_game	*init_game(t_gdata *pars_data)
 	game->dt = init_ex_data(pars_data);
 	game->ply = init_player(pars_data);
 	game->anime = get_animation();
-	
 	if (!game->dt || !game->ply || !game->anime)
 		return (ft_malloc(0, 1));
 	game->ray = (t_ray *)ft_calloc(sizeof(t_ray), 1);

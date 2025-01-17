@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/16 20:32:18 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/17 13:16:53 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,12 @@ typedef struct s_cordinates
 	int	y;
 }	t_cordinates;
 
-typedef struct s_anim_dt {
-    uint32_t    width;
-    uint32_t    height;
-    uint32_t    *pixels;  // Array to store RGBA values
-} t_anim_dt;
+typedef struct s_anim_dt
+{
+	uint32_t	width;
+	uint32_t	height;
+	uint32_t	*pixels;
+}	t_anim_dt;
 
 typedef struct s_elements
 {
@@ -209,5 +210,5 @@ void	*ft_malloc(ssize_t size, int flag);
 // textures
 void	ray_3d(t_game *game, int index, t_ray *ray, double wall_height);
 void	draw_animation(t_game *game);
-int	reverse_bytes(int c);
+int		reverse_bytes(int c);
 #endif
