@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 02:58:51 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/17 13:12:49 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/17 21:01:12 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ t_texture	*init_texture(t_gdata *pars_data)
 	txtr->so = mlx_load_png(pars_data->south);
 	txtr->we = mlx_load_png(pars_data->west);
 	txtr->ea = mlx_load_png(pars_data->east);
-	if (!txtr->no || !txtr->so || !txtr->we || !txtr->ea)
+	txtr->door = mlx_load_png("textures/door.png");
+	if (!txtr->no || !txtr->so || !txtr->we || !txtr->ea || !txtr->door)
 		return (NULL);
 	return (txtr);
 }

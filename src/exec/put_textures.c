@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 07:15:10 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/17 17:33:36 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/17 21:57:45 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,47 @@ int	reverse_bytes(int c)
 	return (b);
 }
 
+int is_door(double x, double y, t_game *game)
+{
+    int map_x;
+    int map_y;
+    
+    // Try both floor and ceil for edge cases
+    map_x = floor(x / TIL_SIZE);
+    map_y = floor(y / TIL_SIZE);
+    
+    // Check first position
+    if (map_x >= 0 && map_y >= 0 && 
+        map_y < game->dt->map_h && map_x < game->dt->map_w &&
+        game->dt->map2d[map_y] && 
+        map_x <= (int)ex_strlen(game->dt->map2d[map_y]) &&
+        game->dt->map2d[map_y][map_x] == 'D')
+        return (1);
+        
+    // Try ceil for edge cases
+    map_x = ceil(x / TIL_SIZE) - 1;
+    map_y = ceil(y / TIL_SIZE) - 1;
+    
+    // Check second position
+    if (map_x >= 0 && map_y >= 0 && 
+        map_y < game->dt->map_h && map_x < game->dt->map_w &&
+        game->dt->map2d[map_y] && 
+        map_x <= (int)ex_strlen(game->dt->map2d[map_y]) &&
+        game->dt->map2d[map_y][map_x] == 'D')
+        return (1);
+        
+    return (0);
+}
+
 mlx_texture_t	*get_texture_exec(t_game *game, int flag)
 {
 	game->ray->r_angle = nor_angle(game->ray->r_angle);
+	
 	if (flag == 0)
 	{
-		if (game->ray->r_angle > M_PI / 2 && game->ray->r_angle
+		if (is_door(game->ray->vert_x, game->ray->vert_y, game))
+			return (game->dt->txtr->door);
+		else if (game->ray->r_angle > M_PI / 2 && game->ray->r_angle
 			< 3 * (M_PI / 2))
 			return (game->dt->txtr->ea);
 		else
@@ -37,7 +72,9 @@ mlx_texture_t	*get_texture_exec(t_game *game, int flag)
 	}
 	else
 	{
-		if (game->ray->r_angle > 0 && game->ray->r_angle < M_PI)
+		if (is_door(game->ray->horz_x, game->ray->horz_y, game))
+			return (game->dt->txtr->door);
+		else if (game->ray->r_angle > 0 && game->ray->r_angle < M_PI)
 			return (game->dt->txtr->so);
 		else
 			return (game->dt->txtr->no);
