@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/17 19:58:02 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/17 20:01:10 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,6 @@ void	draw_animation(t_game *game);
 int		reverse_bytes(int c);
 void	put_to_image_gun(t_game *game, t_anim_dt *data);
 void	open_dors(t_game *game);
-int		not_1D(char **map, int map_x, int map_y);
+int		not_1d(char **map, int map_x, int map_y);
 
 #endif

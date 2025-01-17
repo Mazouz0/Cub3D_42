@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:59:40 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/17 19:57:35 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/17 20:01:10 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,14 @@ void	move_player(t_game *game, double move_x, double move_y)
 	map = game->dt->map2d;
 	new_x = norm_pos_x(map, map_x, map_y, new_x);
 	new_y = norm_pos_y(map, map_x, map_y, new_y);
-	if (not_1D(map, map_x, map_y) && not_1D(map, game->ply->p_x / TIL_SIZE,map_y)
-		&& not_1D(map, map_x, game->ply->p_y / TIL_SIZE))
+	if (not_1d(map, map_x, map_y) && not_1d(map, game->ply->p_x / TIL_SIZE,map_y)
+		&& not_1d(map, map_x, game->ply->p_y / TIL_SIZE))
 	{
 		game->ply->p_x = new_x;
 		game->ply->p_y = new_y;
 	}
-	else if (not_1D(map, map_x, game->ply->p_y / TIL_SIZE)
-		&& not_1D(map, map_x, map_y))
+	else if (not_1d(map, map_x, game->ply->p_y / TIL_SIZE)
+		&& not_1d(map, map_x, map_y))
 	{
 		game->ply->p_x = new_x;
 		game->ply->p_y = new_y;
