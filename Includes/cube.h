@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/17 20:59:07 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/18 11:30:46 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ typedef struct s_game
 	t_ray		*ray;
 	char		**anime;
 	int			gun;
+	int			last_x;
 }	t_game;
 
 typedef struct s_utils

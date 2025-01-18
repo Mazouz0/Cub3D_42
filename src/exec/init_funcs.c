@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 02:58:51 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/17 21:01:12 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/18 12:56:54 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ char	**get_animation(void)
 	if (!anime)
 		return (NULL);
 	i = 0;
-	while (i < 100)
+	while (i < 76)
 	{
-		name = ex_strjoin("t_animation/moon/", ft_itoa(i + 1));
+		name = ex_strjoin("t_animation/skult/", ft_itoa(i + 1));
 		anime[i] = ex_strjoin(name, ".png");
 		if (!anime[i])
 			return (NULL);
@@ -104,5 +104,6 @@ t_game	*init_game(t_gdata *pars_data)
 	game->img = mlx_new_image(game->mlx, WIND_WID, WIND_HEI);
 	if (!game->img)
 		return (ft_clean(game, "mlx_new_image failed"), NULL);
+	game->last_x = -1;
 	return (game);
 }
