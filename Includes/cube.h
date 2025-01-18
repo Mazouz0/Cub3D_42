@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/18 11:30:46 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:15:57 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ typedef struct s_player
 	int		p_y;
 	double	angle_dir;
 	double	fov_rd;
-	int		rot;
 	int		l_r;
 	int		u_d;
 	int		m_x;

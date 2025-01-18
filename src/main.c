@@ -6,39 +6,11 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:07:05 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/18 12:53:42 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:19:26 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/cube.h"
-
-void	ft_clean(t_game *game, char *msg)
-{
-	if (ex_strcmp("Game over\n", msg))
-		printf("Error\n");
-	if (msg)
-		printf("\t%s\n", msg);
-	if (game)
-	{
-		if (game->mlx)
-			mlx_terminate(game->mlx);
-		if (game->img)
-			mlx_delete_image(game->mlx, game->img);
-		if (game->dt && game->dt->txtr)
-		{
-			if (game->dt->txtr->no)
-				mlx_delete_texture(game->dt->txtr->no);
-			if (game->dt->txtr->ea)
-				mlx_delete_texture(game->dt->txtr->ea);
-			if (game->dt->txtr->so)
-				mlx_delete_texture(game->dt->txtr->so);
-			if (game->dt->txtr->we)
-				mlx_delete_texture(game->dt->txtr->we);
-		}
-	}
-	ft_malloc(0, 1);
-	exit(0);
-}
 
 void	ft_reles(mlx_key_data_t key_data, t_game *game)
 {
@@ -50,10 +22,6 @@ void	ft_reles(mlx_key_data_t key_data, t_game *game)
 		game->ply->u_d = 0;
 	else if (key_data.key == MLX_KEY_W && key_data.action == MLX_RELEASE)
 		game->ply->u_d = 0;
-	else if (key_data.key == MLX_KEY_LEFT && key_data.action == MLX_RELEASE)
-		game->ply->rot = 0;
-	else if (key_data.key == MLX_KEY_RIGHT && key_data.action == MLX_RELEASE)
-		game->ply->rot = 0;
 }
 
 void	key_hook(mlx_key_data_t key_data, void *param)
@@ -71,16 +39,13 @@ void	key_hook(mlx_key_data_t key_data, void *param)
 		game->ply->u_d = -1;
 	else if (key_data.key == MLX_KEY_W && key_data.action == MLX_PRESS)
 		game->ply->u_d = 1;
-	else if (key_data.key == MLX_KEY_LEFT && key_data.action == MLX_PRESS)
-		game->ply->rot = -1;
-	else if (key_data.key == MLX_KEY_RIGHT && key_data.action == MLX_PRESS)
-		game->ply->rot = 1;
 	if (key_data.key == MLX_KEY_SPACE && key_data.action == MLX_PRESS)
 		open_dors(game);
 	ft_reles(key_data, game);
 }
 
-void	mouse_hook(mouse_key_t button, action_t action, modifier_key_t mods, void* param)
+void	mouse_hook(mouse_key_t button, action_t action,
+	modifier_key_t mods, void *param)
 {
 	t_game	*game;
 

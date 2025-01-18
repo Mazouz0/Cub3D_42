@@ -6,11 +6,39 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 00:44:20 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/17 13:12:27 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:18:33 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/cube.h"
+
+void	ft_clean(t_game *game, char *msg)
+{
+	if (ex_strcmp("Game over\n", msg))
+		printf("Error\n");
+	if (msg)
+		printf("\t%s\n", msg);
+	if (game)
+	{
+		if (game->mlx)
+			mlx_terminate(game->mlx);
+		if (game->img)
+			mlx_delete_image(game->mlx, game->img);
+		if (game->dt && game->dt->txtr)
+		{
+			if (game->dt->txtr->no)
+				mlx_delete_texture(game->dt->txtr->no);
+			if (game->dt->txtr->ea)
+				mlx_delete_texture(game->dt->txtr->ea);
+			if (game->dt->txtr->so)
+				mlx_delete_texture(game->dt->txtr->so);
+			if (game->dt->txtr->we)
+				mlx_delete_texture(game->dt->txtr->we);
+		}
+	}
+	ft_malloc(0, 1);
+	exit(0);
+}
 
 void	*free_all(void **ptr_list, int *i)
 {

@@ -6,60 +6,39 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 07:15:10 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/17 21:57:45 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:29:25 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/cube.h"
 
-int	reverse_bytes(int c)
+int	is_door(double x, double y, t_game *game)
 {
-	unsigned int	b;
+	int	map_x;
+	int	map_y;
 
-	b = 0;
-	b |= (c & 0xFF) << 24;
-	b |= (c & 0xFF00) << 8;
-	b |= (c & 0xFF0000) >> 8;
-	b |= (c & 0xFF000000) >> 24;
-	return (b);
-}
-
-int is_door(double x, double y, t_game *game)
-{
-    int map_x;
-    int map_y;
-    
-    // Try both floor and ceil for edge cases
-    map_x = floor(x / TIL_SIZE);
-    map_y = floor(y / TIL_SIZE);
-    
-    // Check first position
-    if (map_x >= 0 && map_y >= 0 && 
-        map_y < game->dt->map_h && map_x < game->dt->map_w &&
-        game->dt->map2d[map_y] && 
-        map_x <= (int)ex_strlen(game->dt->map2d[map_y]) &&
-        game->dt->map2d[map_y][map_x] == 'D')
-        return (1);
-        
-    // Try ceil for edge cases
-    map_x = ceil(x / TIL_SIZE) - 1;
-    map_y = ceil(y / TIL_SIZE) - 1;
-    
-    // Check second position
-    if (map_x >= 0 && map_y >= 0 && 
-        map_y < game->dt->map_h && map_x < game->dt->map_w &&
-        game->dt->map2d[map_y] && 
-        map_x <= (int)ex_strlen(game->dt->map2d[map_y]) &&
-        game->dt->map2d[map_y][map_x] == 'D')
-        return (1);
-        
-    return (0);
+	map_x = floor(x / TIL_SIZE);
+	map_y = floor(y / TIL_SIZE);
+	if (map_x >= 0 && map_y >= 0
+		&& map_y < game->dt->map_h && map_x < game->dt->map_w
+		&& game->dt->map2d[map_y]
+		&& map_x <= (int)ex_strlen(game->dt->map2d[map_y])
+		&& game->dt->map2d[map_y][map_x] == 'D')
+		return (1);
+	map_x = ceil(x / TIL_SIZE) - 1;
+	map_y = ceil(y / TIL_SIZE) - 1;
+	if (map_x >= 0 && map_y >= 0
+		&& map_y < game->dt->map_h && map_x < game->dt->map_w
+		&& game->dt->map2d[map_y]
+		&& map_x <= (int)ex_strlen(game->dt->map2d[map_y])
+		&& game->dt->map2d[map_y][map_x] == 'D')
+		return (1);
+	return (0);
 }
 
 mlx_texture_t	*get_texture_exec(t_game *game, int flag)
 {
 	game->ray->r_angle = nor_angle(game->ray->r_angle);
-	
 	if (flag == 0)
 	{
 		if (is_door(game->ray->vert_x, game->ray->vert_y, game))

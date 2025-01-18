@@ -6,11 +6,23 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 05:43:14 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/13 02:08:52 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:29:36 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/cube.h"
+
+int	reverse_bytes(int c)
+{
+	unsigned int	b;
+
+	b = 0;
+	b |= (c & 0xFF) << 24;
+	b |= (c & 0xFF00) << 8;
+	b |= (c & 0xFF0000) >> 8;
+	b |= (c & 0xFF000000) >> 24;
+	return (b);
+}
 
 void	ft_bzero(void *s, size_t n)
 {
