@@ -6,7 +6,11 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 07:15:10 by mohmazou          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/01/18 10:07:07 by alamini          ###   ########.fr       */
+=======
+/*   Updated: 2025/01/18 13:29:25 by mohmazou         ###   ########.fr       */
+>>>>>>> dd9fba52c866fd7f7c8a37387eda5a51625004ad
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +18,26 @@
 
 int	is_door(double x, double y, t_game *game)
 {
-    int map_x;
-    int map_y;
+	int	map_x;
+	int	map_y;
 
-    map_x = floor(x / TIL_SIZE);
-    map_y = floor(y / TIL_SIZE);
-    if (map_x >= 0 && map_y >= 0 && 
-        map_y < game->dt->map_h && map_x < game->dt->map_w &&
-        game->dt->map2d[map_y] && 
-        map_x <= (int)ex_strlen(game->dt->map2d[map_y]) &&
-        game->dt->map2d[map_y][map_x] == 'D')
-        return (1);
-    map_x = ceil(x / TIL_SIZE) - 1;
-    map_y = ceil(y / TIL_SIZE) - 1;
-    if (map_x >= 0 && map_y >= 0 && 
-        map_y < game->dt->map_h && map_x < game->dt->map_w &&
-        game->dt->map2d[map_y] && 
-        map_x <= (int)ex_strlen(game->dt->map2d[map_y]) &&
-        game->dt->map2d[map_y][map_x] == 'D')
-        return (1);
-    return (0);
+	map_x = floor(x / TIL_SIZE);
+	map_y = floor(y / TIL_SIZE);
+	if (map_x >= 0 && map_y >= 0
+		&& map_y < game->dt->map_h && map_x < game->dt->map_w
+		&& game->dt->map2d[map_y]
+		&& map_x <= (int)ex_strlen(game->dt->map2d[map_y])
+		&& game->dt->map2d[map_y][map_x] == 'D')
+		return (1);
+	map_x = ceil(x / TIL_SIZE) - 1;
+	map_y = ceil(y / TIL_SIZE) - 1;
+	if (map_x >= 0 && map_y >= 0
+		&& map_y < game->dt->map_h && map_x < game->dt->map_w
+		&& game->dt->map2d[map_y]
+		&& map_x <= (int)ex_strlen(game->dt->map2d[map_y])
+		&& game->dt->map2d[map_y][map_x] == 'D')
+		return (1);
+	return (0);
 }
 
 mlx_texture_t	*get_texture_exec(t_game *game, int flag)

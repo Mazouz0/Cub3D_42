@@ -6,12 +6,11 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 19:00:13 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/17 20:25:16 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:22:56 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/cube.h"
-
 
 void	change_map(char **map, int p_mx, int p_my, t_game *game)
 {
@@ -41,7 +40,6 @@ void	change_map(char **map, int p_mx, int p_my, t_game *game)
 		&& ply_y + 2 <= ((p_my + 1) * TIL_SIZE))
 		map[p_my + 1][p_mx] = 'D';
 }
-
 
 void	open_dors(t_game *game)
 {

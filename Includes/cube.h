@@ -6,7 +6,7 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/18 10:27:48 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/18 13:32:47 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ typedef struct s_player
 	int		p_y;
 	double	angle_dir;
 	double	fov_rd;
-	int		rot;
 	int		l_r;
 	int		u_d;
 	int		m_x;
@@ -134,6 +133,7 @@ typedef struct s_game
 	t_ray		*ray;
 	char		**anime;
 	int			gun;
+	int			last_x;
 }	t_game;
 
 typedef struct s_utils

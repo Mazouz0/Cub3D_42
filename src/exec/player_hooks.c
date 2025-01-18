@@ -6,35 +6,17 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:59:40 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/17 20:38:31 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:23:49 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/cube.h"
 
-void	rotate_player(t_game *game, int i)
-{
-	if (i == 1)
-	{
-		game->ply->angle_dir += ROT_SPEED;
-		if (game->ply->angle_dir > 2 * M_PI)
-			game->ply->angle_dir -= 2 * M_PI;
-	}
-	else if (i == -1)
-	{
-		game->ply->angle_dir -= ROT_SPEED;
-		if (game->ply->angle_dir < 0)
-			game->ply->angle_dir += 2 * M_PI;
-	}
-}
-
 int	norm_pos_x(char **map, int map_x, int map_y, int new_x)
 {
-	// if (map[map_y][map_x + 1] == '1'
 	if (!not_1d(map, map_x + 1, map_y)
 		&& (new_x % TIL_SIZE) > (TIL_SIZE - WALL_BUFFER))
 		return ((map_x * TIL_SIZE) + (TIL_SIZE - WALL_BUFFER));
-	// if (map[map_y][map_x - 1] == '1'
 	if (!not_1d(map, map_x - 1, map_y)
 		&& (new_x % TIL_SIZE) < WALL_BUFFER)
 		return ((map_x * TIL_SIZE) + WALL_BUFFER);
@@ -45,11 +27,9 @@ int	norm_pos_y(char **map, int map_x, int map_y, int new_y)
 {
 	if (!map || !map[map_y] || !map[map_y + 1] || !map[map_y - 1])
 		return (new_y);
-	// if (map[map_y + 1][map_x] == '1'
 	if (!not_1d(map, map_x, map_y + 1)
 		&& (new_y % TIL_SIZE) > (TIL_SIZE - WALL_BUFFER))
 		return ((map_y * TIL_SIZE) + (TIL_SIZE - WALL_BUFFER));
-	// if (map[map_y - 1][map_x] == '1'
 	if (!not_1d(map, map_x, map_y - 1)
 		&& (new_y % TIL_SIZE) < WALL_BUFFER)
 		return ((map_y * TIL_SIZE) + WALL_BUFFER);
@@ -71,8 +51,8 @@ void	move_player(t_game *game, double move_x, double move_y)
 	map = game->dt->map2d;
 	new_x = norm_pos_x(map, map_x, map_y, new_x);
 	new_y = norm_pos_y(map, map_x, map_y, new_y);
-	if (not_1d(map, map_x, map_y) && not_1d(map, game->ply->p_x / TIL_SIZE,map_y)
-		&& not_1d(map, map_x, game->ply->p_y / TIL_SIZE))
+	if (not_1d(map, map_x, map_y) && not_1d(map, game->ply->p_x
+			/ TIL_SIZE, map_y) && not_1d(map, map_x, game->ply->p_y / TIL_SIZE))
 	{
 		game->ply->p_x = new_x;
 		game->ply->p_y = new_y;
@@ -90,7 +70,6 @@ void	player_hook(t_game *game, double move_x, double move_y)
 	int	forward;
 
 	forward = game->ply->l_r;
-	rotate_player(game, game->ply->rot);
 	if (forward == 1)
 	{
 		move_x = -sin(game->ply->angle_dir) * MOV_SPEED;

@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:59:35 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/17 18:52:54 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/18 12:56:01 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,25 +89,25 @@ t_anim_dt	*init_gun(int gun, mlx_texture_t **tex_ptr)
 
 void	draw_animation(t_game *game)
 {
-	static int		moon;
+	static int		skult;
 	static int		gun;
-	mlx_texture_t	*moon_txr;
+	mlx_texture_t	*skult_txr;
 	mlx_texture_t	*gun_txt;
 
-	moon_txr = NULL;
+	skult_txr = NULL;
 	gun_txt = NULL;
-	if (moon == 100)
-		moon = 0;
+	if (skult == 76)
+		skult = 0;
 	if (gun == 15)
 	{
 		gun = 0;
 		game->gun = 0;
 	}
-	put_to_image_spiret(game, init_anim(game->anime[moon ++], &moon_txr));
+	put_to_image_spiret(game, init_anim(game->anime[skult ++], &skult_txr));
 	if (game->gun)
 		put_to_image_gun(game, init_gun(gun ++, &gun_txt));
-	if (moon_txr)
-		mlx_delete_texture(moon_txr);
+	if (skult_txr)
+		mlx_delete_texture(skult_txr);
 	if (gun_txt)
 		mlx_delete_texture(gun_txt);
 }

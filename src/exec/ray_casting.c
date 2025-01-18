@@ -6,7 +6,7 @@
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 21:29:20 by mohmazou          #+#    #+#             */
-/*   Updated: 2025/01/17 20:08:32 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:20:26 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	wall_hit(double x, double y, t_game *game)
 	if (map_y >= game->dt->map_h || map_x >= game->dt->map_w)
 		return (0);
 	if (map[map_y] && map_x <= (int)ex_strlen(map[map_y]))
-		// if (map[map_y][map_x] == '1')
 		if (!not_1d(map, map_x, map_y))
 			return (0);
 	return (1);

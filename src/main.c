@@ -6,39 +6,11 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:07:05 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/18 09:48:48 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/18 13:33:13 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/cube.h"
-
-void	ft_clean(t_game *game, char *msg)
-{
-	if (ex_strcmp("Game over\n", msg))
-		printf("Error\n");
-	if (msg)
-		printf("\t%s\n", msg);
-	if (game)
-	{
-		if (game->mlx)
-			mlx_terminate(game->mlx);
-		if (game->img)
-			mlx_delete_image(game->mlx, game->img);
-		if (game->dt && game->dt->txtr)
-		{
-			if (game->dt->txtr->no)
-				mlx_delete_texture(game->dt->txtr->no);
-			if (game->dt->txtr->ea)
-				mlx_delete_texture(game->dt->txtr->ea);
-			if (game->dt->txtr->so)
-				mlx_delete_texture(game->dt->txtr->so);
-			if (game->dt->txtr->we)
-				mlx_delete_texture(game->dt->txtr->we);
-		}
-	}
-	ft_malloc(0, 1);
-	exit(0);
-}
 
 void	ft_reles(mlx_key_data_t key_data, t_game *game)
 {
@@ -50,10 +22,6 @@ void	ft_reles(mlx_key_data_t key_data, t_game *game)
 		game->ply->u_d = 0;
 	else if (key_data.key == MLX_KEY_W && key_data.action == MLX_RELEASE)
 		game->ply->u_d = 0;
-	else if (key_data.key == MLX_KEY_LEFT && key_data.action == MLX_RELEASE)
-		game->ply->rot = 0;
-	else if (key_data.key == MLX_KEY_RIGHT && key_data.action == MLX_RELEASE)
-		game->ply->rot = 0;
 }
 
 void	key_hook(mlx_key_data_t key_data, void *param)
@@ -71,15 +39,43 @@ void	key_hook(mlx_key_data_t key_data, void *param)
 		game->ply->u_d = -1;
 	else if (key_data.key == MLX_KEY_W && key_data.action == MLX_PRESS)
 		game->ply->u_d = 1;
+<<<<<<< HEAD
 	else if (key_data.key == MLX_KEY_LEFT && key_data.action == MLX_PRESS)
 		game->ply->rot = -1;
 	else if (key_data.key == MLX_KEY_RIGHT && key_data.action == MLX_PRESS)
 		game->ply->rot = 1;
 	if (key_data.key == MLX_KEY_E && key_data.action == MLX_PRESS)
 		game->gun = 1;
+=======
+>>>>>>> dd9fba52c866fd7f7c8a37387eda5a51625004ad
 	if (key_data.key == MLX_KEY_SPACE && key_data.action == MLX_PRESS)
 		open_dors(game);
 	ft_reles(key_data, game);
+}
+
+void	mouse_hook(mouse_key_t button, action_t action,
+	modifier_key_t mods, void *param)
+{
+	t_game	*game;
+
+	game = (t_game *)param;
+	(void)mods;
+	if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS)
+		game->gun = 1;
+}
+
+void	cursor_func(double xpos, double ypos, void *param)
+{
+	t_game	*game;
+	double	delta;
+
+	(void)ypos;
+	game = (t_game *)param;
+	if (game->last_x == -1)
+		game->last_x = xpos;
+	delta = xpos - game->last_x;
+	game->ply->angle_dir += delta * ROT_SPEED * 0.01;
+	game->last_x = xpos;
 }
 
 int	main(int argc, char **argv)
@@ -94,7 +90,10 @@ int	main(int argc, char **argv)
 	if (!game)
 		return (ft_clean(NULL, "Game initialization failed"), 1);
 	mlx_key_hook(game->mlx, key_hook, game);
+	mlx_mouse_hook(game->mlx, mouse_hook, game);
+	mlx_cursor_hook(game->mlx, cursor_func, game);
 	mlx_loop_hook(game->mlx, game_loop, game);
+	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
 	mlx_loop(game->mlx);
 	ft_clean(game, NULL);
 	return (0);
