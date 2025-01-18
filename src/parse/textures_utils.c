@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 01:53:41 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/18 10:35:16 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/18 13:38:10 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	is_valid_door(t_map map, int y, int x)
 	return (1);
 }
 
-int check_doors(t_map map)
+int	check_doors(t_map map)
 {
 	int	i;
 	int	j;
