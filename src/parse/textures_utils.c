@@ -6,7 +6,7 @@
 /*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 01:53:41 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/13 04:29:09 by alamini          ###   ########.fr       */
+/*   Updated: 2025/01/18 10:35:16 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,44 @@ char	*get_line(char *tmp)
 	line = my_strdup(tmp);
 	free(tmp);
 	return (line);
+}
+
+int	is_valid_door(t_map map, int y, int x)
+{
+	char	**grid;
+
+	grid = map.the_map;
+	if (!x || !y || x == map.max_column - 1 || y == map.max_row - 1)
+		return (0);
+	if (grid[y - 1][x] == '1' && grid[y + 1][x] == '1')
+		return (0);
+	else if (grid[y][x - 1] == '1' && grid[y][x + 1] == '1')
+		return (0);
+	return (1);
+}
+
+int check_doors(t_map map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < map.max_row)
+	{
+		j = 0;
+		while (j < map.max_column)
+		{
+			if (in_set("DO", map.the_map[i][j]))
+			{
+				if (is_valid_door(map, i, j))
+				{
+					return (ft_clean(NULL, "Invalid Door placement"), 1);
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }

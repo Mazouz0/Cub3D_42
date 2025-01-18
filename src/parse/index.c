@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   index.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:16:39 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/17 18:03:36 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/18 10:28:06 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,8 @@ t_gdata	*parsing(int argc, char **argv)
 		return (ft_clean(NULL, "Invalid map content!!"), NULL);
 	if (get_map(fd, game))
 		return (NULL);
-	if (map_borders(game->map) || validate_map(game->map))
+	if (map_borders(game->map) || validate_map(game->map)
+		|| check_doors(game->map))
 		return (NULL);
 	get_player_info(&game->map);
 	return (game);

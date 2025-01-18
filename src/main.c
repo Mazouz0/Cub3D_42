@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:07:05 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/17 19:39:56 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/18 09:48:48 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ void	key_hook(mlx_key_data_t key_data, void *param)
 		game->ply->rot = -1;
 	else if (key_data.key == MLX_KEY_RIGHT && key_data.action == MLX_PRESS)
 		game->ply->rot = 1;
-	// if (key_data.key == MLX_KEY_SPACE && key_data.action == MLX_PRESS)
-		// game->gun = 1;
+	if (key_data.key == MLX_KEY_E && key_data.action == MLX_PRESS)
+		game->gun = 1;
 	if (key_data.key == MLX_KEY_SPACE && key_data.action == MLX_PRESS)
 		open_dors(game);
 	ft_reles(key_data, game);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:19:11 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/17 18:11:45 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/18 10:18:20 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	validate_map(t_map map)
 			{
 				if (is_sourounded_by_void(map, i, j))
 				{
-					return (ft_clean(NULL, "Invalid Map In"), 1);
+					return (ft_clean(NULL, "Invalid Map"), 1);
 				}
 			}
 			j++;
@@ -121,14 +121,14 @@ int	map_borders(t_map map)
 	while (i < map.max_column)
 	{
 		if (!in_set("1 ", grid[0][i]) || !in_set("1 ", grid[max_row - 1][i]))
-			return (ft_error("Looks like you forgot to build the walls ^_^"));
+			return (ft_clean(NULL, "you forgot to build the walls ^_^"), 1);
 		i++;
 	}
 	i = 0;
 	while (i < map.max_row)
 	{
 		if (!in_set("1 ", grid[i][0]) || !in_set("1 ", grid[i][max_column - 1]))
-			return (ft_error("Looks like you forgot to build the walls ^_^"));
+			return (ft_clean(NULL, "you forgot to build the walls ^_^"), 1);
 		i++;
 	}
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alamini <alamini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:17:13 by alamini           #+#    #+#             */
-/*   Updated: 2025/01/17 20:59:07 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/18 10:27:48 by alamini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ int		get_map(int fd, t_gdata *game);
 int		validate_map(t_map map);
 int		map_borders(t_map map);
 int		row_length(char *line);
+int		check_doors(t_map map);
 
 // execution functions
 
