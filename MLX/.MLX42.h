@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MLX42.h                                            :+:      :+:    :+:   */
+/*   .MLX42.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mohmazou <mohmazou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 02:29:06 by W2Wizard          #+#    #+#             */
-/*   Updated: 2024/12/09 08:15:49 by mohmazou         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:25:09 by mohmazou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 
 #ifndef MLX42_H
 # define MLX42_H
-# include <stddef.h>
-# include <stdint.h>
-# include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdbool.h>
 # ifdef __cplusplus
 extern "C" {
 # endif
