@@ -1,7 +1,7 @@
 <div style="max-width:900px;margin:20px auto;padding:24px;border-radius:14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial;line-height:1.55;color:#24292e;border:1px solid #e1e4e8;background:#ffffff">
 
   <h1 style="font-size:28px;margin:0 0 10px">
-    🎮 cub3D
+    cub3D
   </h1>
 
   <p style="margin:0 0 16px;color:#57606a">
@@ -9,7 +9,7 @@
     You work with angles, rays, textures, math, and the MLX42 library to render a first-person view inside a 2D map.
   </p>
 
-  <h2 style="font-size:20px;margin:20px 0 8px">✨ Main Features</h2>
+  <h2 style="font-size:20px;margin:20px 0 8px"> Main Features</h2>
   <ul>
     <li>Real-time raycasting engine</li>
     <li>Loading and rendering wall textures</li>
@@ -20,7 +20,7 @@
     <li>Parsing and validating the <code>.cub</code> map file</li>
   </ul>
 
-  <h2 style="font-size:20px;margin:20px 0 8px">📐 Raycasting Explained</h2>
+  <h2 style="font-size:20px;margin:20px 0 8px"> Raycasting Explained</h2>
   <p style="color:#57606a">
     Raycasting converts a 2D map into a 3D world by sending one ray for each vertical line on the screen.
     Each ray:
@@ -42,7 +42,7 @@ height = (TILE_SIZE / distance) * projection_plane_distance
     This creates the illusion of 3D depth while being extremely fast and simple.
   </p>
 
-  <h2 style="font-size:20px;margin:20px 0 8px">🎨 Textures</h2>
+  <h2 style="font-size:20px;margin:20px 0 8px"> Textures</h2>
   <p style="color:#57606a">
     Each wall direction (North, South, East, West) has its own texture.  
     After a ray hits the wall, the engine computes:
@@ -55,7 +55,7 @@ height = (TILE_SIZE / distance) * projection_plane_distance
     <li>The Y progression while drawing the vertical slice</li>
   </ul>
 
-  <h2 style="font-size:20px;margin:20px 0 8px">📁 Map (.cub File)</h2>
+  <h2 style="font-size:20px;margin:20px 0 8px"> Map (.cub File)</h2>
   <ul>
     <li>Texture paths (NO, SO, WE, EA)</li>
     <li>Floor and ceiling colors</li>
@@ -67,7 +67,7 @@ height = (TILE_SIZE / distance) * projection_plane_distance
     The map is validated to ensure it is closed and contains only valid characters.
   </p>
 
-  <h2 style="font-size:20px;margin:20px 0 8px">🎮 Controls</h2>
+  <h2 style="font-size:20px;margin:20px 0 8px"> Controls</h2>
   <ul>
     <li><strong>W / S</strong> — Move forward / backward</li>
     <li><strong>A / D</strong> — Strafe left / right</li>
@@ -75,13 +75,13 @@ height = (TILE_SIZE / distance) * projection_plane_distance
     <li><strong>ESC</strong> — Quit</li>
   </ul>
 
-  <h2 style="font-size:20px;margin:20px 0 8px">🚀 Build & Run</h2>
+  <h2 style="font-size:20px;margin:20px 0 8px"> Build & Run</h2>
   <pre style="background:#f6f8fa;padding:12px;border-radius:8px;overflow:auto">
 make
 ./cub3D maps/map.cub
   </pre>
 
-  <h2 style="font-size:20px;margin:20px 0 8px">📚 Project Goals</h2>
+  <h2 style="font-size:20px;margin:20px 0 8px"> Project Goals</h2>
   <ul>
     <li>Understand raycasting and projection</li>
     <li>Use trigonometry for movement and angles</li>
